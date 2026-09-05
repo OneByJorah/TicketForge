@@ -1,0 +1,365 @@
+/* ============================================================
+   Help Desk Theme — Client Portal Theme
+   Target: osTicket 1.18.x client-facing portal (/support or similar)
+   Load AFTER osTicket's own css/style.css and helpdesk-tokens.css.
+   ============================================================ */
+
+@import url("helpdesk-tokens.css");
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--helpdesk-font-base) !important;
+  background: var(--helpdesk-gray-50) !important;
+  color: var(--helpdesk-gray-900);
+  transition: background var(--helpdesk-transition-base), color var(--helpdesk-transition-base);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Fluid type scale — scales smoothly between mobile and desktop
+   instead of jumping at breakpoints */
+h1, .site-title { font-size: clamp(1.1rem, 1rem + 1vw, 1.6rem); }
+h2 { font-size: clamp(1.05rem, 0.95rem + 0.8vw, 1.4rem); }
+body, input, textarea, select, button { font-size: clamp(0.92rem, 0.88rem + 0.2vw, 1rem); }
+
+/* --- Skip-to-content link (accessibility, keyboard/screen-reader users) --- */
+.helpdesk-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--helpdesk-gold-500);
+  color: var(--helpdesk-navy-900);
+  padding: 12px 20px;
+  font-weight: 700;
+  z-index: var(--helpdesk-z-toast);
+  border-radius: 0 0 var(--helpdesk-radius-sm) 0;
+}
+.helpdesk-skip-link:focus {
+  left: 0;
+}
+
+/* --- Safe-area support for notched phones (iPhone, etc.) --- */
+#header, .header, #footer, .footer {
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
+}
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* --- Dark mode toggle button (optional, wired up by helpdesk-client-portal.js) --- */
+.helpdesk-theme-toggle {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--helpdesk-white);
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 1rem;
+  transition: background var(--helpdesk-transition-fast);
+}
+.helpdesk-theme-toggle:hover { background: rgba(255,255,255,0.12); }
+
+/* --- Form validation states --- */
+input:invalid:not(:placeholder-shown), textarea:invalid:not(:placeholder-shown) {
+  border-color: var(--helpdesk-status-overdue) !important;
+}
+input:valid:not(:placeholder-shown):not([type="submit"]) {
+  border-color: var(--helpdesk-status-open) !important;
+}
+.helpdesk-field-error {
+  color: var(--helpdesk-status-overdue);
+  font-size: .8rem;
+  margin-top: 4px;
+  display: block;
+}
+.helpdesk-field-hint {
+  color: var(--helpdesk-gray-500);
+  font-size: .78rem;
+  margin-top: 4px;
+  display: block;
+}
+
+/* --- Loading state (for AJAX ticket submission / status lookups) --- */
+.helpdesk-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.helpdesk-spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(242,169,0,0.3);
+  border-top-color: var(--helpdesk-gold-500);
+  border-radius: 50%;
+  animation: helpdesk-spin 0.7s linear infinite;
+}
+@keyframes helpdesk-spin { to { transform: rotate(360deg); } }
+
+/* --- Toast / inline confirmation banner --- */
+.helpdesk-toast {
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--helpdesk-navy-900);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--helpdesk-radius-md);
+  box-shadow: var(--helpdesk-shadow-lg);
+  z-index: var(--helpdesk-z-toast);
+  font-size: .88rem;
+  border-left: 4px solid var(--helpdesk-status-open);
+}
+
+a { color: var(--helpdesk-navy-700); }
+a:hover { color: var(--helpdesk-gold-600); }
+
+/* ---------- Header / masthead ---------- */
+#header,
+.header,
+div#pageHeader {
+  background: linear-gradient(180deg, var(--helpdesk-navy-900), var(--helpdesk-navy-800)) !important;
+  border-bottom: 3px solid var(--helpdesk-gold-500);
+  min-height: var(--helpdesk-header-height);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+#header h1, #header .site-title, .logo-title {
+  color: var(--helpdesk-white) !important;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: .02em;
+}
+
+#header img.logo,
+img#logo {
+  max-height: 40px;
+  width: auto;
+  margin-right: 12px;
+}
+
+/* ---------- Primary nav ---------- */
+#nav, ul.nav, .navbar {
+  background: var(--helpdesk-navy-700) !important;
+}
+
+#nav ul li a, .navbar a, #nav a {
+  color: var(--helpdesk-white) !important;
+  font-weight: 500;
+  padding: 12px 16px !important;
+  min-height: var(--helpdesk-touch-target);
+  display: inline-flex !important;
+  align-items: center;
+  transition: background .15s ease;
+}
+
+#nav ul li a:hover, .navbar a:hover {
+  background: var(--helpdesk-navy-600) !important;
+  color: var(--helpdesk-gold-100) !important;
+}
+
+#nav ul li.active a, .navbar .active a {
+  background: var(--helpdesk-gold-500) !important;
+  color: var(--helpdesk-navy-900) !important;
+  font-weight: 700;
+}
+
+/* Mobile hamburger nav (injected by helpdesk-client-portal.js) */
+.helpdesk-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--helpdesk-white);
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+/* ---------- Buttons ---------- */
+.btn, input[type="submit"], button.btn, a.btn {
+  background: var(--helpdesk-navy-700) !important;
+  color: var(--helpdesk-white) !important;
+  border: none !important;
+  border-radius: var(--helpdesk-radius-sm) !important;
+  padding: 10px 18px !important;
+  min-height: var(--helpdesk-touch-target);
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: background .15s ease, transform .05s ease;
+}
+.btn:hover, input[type="submit"]:hover { background: var(--helpdesk-navy-600) !important; }
+.btn:active { transform: translateY(1px); }
+
+.btn.orange, .btn.primary, button[type="submit"].orange, .btn-primary {
+  background: var(--helpdesk-gold-500) !important;
+  color: var(--helpdesk-navy-900) !important;
+}
+.btn.orange:hover, .btn.primary:hover, .btn-primary:hover {
+  background: var(--helpdesk-gold-600) !important;
+}
+
+/* ---------- Cards / panels ---------- */
+.panel, .container, #content .well, .box, .ticket-panel {
+  background: var(--helpdesk-white);
+  border: 1px solid var(--helpdesk-gray-200);
+  border-radius: var(--helpdesk-radius-lg);
+  box-shadow: var(--helpdesk-shadow-sm);
+  padding: 24px;
+}
+
+/* ---------- Forms ---------- */
+input[type="text"], input[type="email"], input[type="password"],
+input[type="tel"], textarea, select {
+  border: 1px solid var(--helpdesk-gray-300) !important;
+  border-radius: var(--helpdesk-radius-sm) !important;
+  padding: 10px 12px !important;
+  font-size: 1rem !important;
+  width: 100%;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+input:focus, textarea:focus, select:focus, .btn:focus, a:focus {
+  outline: none !important;
+  border-color: var(--helpdesk-gold-500) !important;
+  box-shadow: var(--helpdesk-focus-ring) !important;
+}
+
+label { font-weight: 600; color: var(--helpdesk-gray-700); }
+
+fieldset {
+  border: 1px solid var(--helpdesk-gray-200);
+  border-radius: var(--helpdesk-radius-md);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* ---------- Ticket status badges ---------- */
+.status, .label, .badge {
+  border-radius: 999px !important;
+  padding: 4px 12px !important;
+  font-size: .78rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.status.open, .label-success   { background: var(--helpdesk-status-open) !important;    color: #fff !important; }
+.status.overdue, .label-danger { background: var(--helpdesk-status-overdue) !important; color: #fff !important; }
+.status.pending, .label-warning{ background: var(--helpdesk-status-pending) !important; color: #fff !important; }
+.status.closed, .label-default { background: var(--helpdesk-status-closed) !important;  color: #fff !important; }
+
+/* ---------- Tables (ticket status / thread lists) ---------- */
+table.list, table.grid { width: 100%; border-collapse: collapse; }
+table.list th, table.grid th {
+  background: var(--helpdesk-navy-900);
+  color: var(--helpdesk-white);
+  text-align: left;
+  padding: 10px 12px;
+  font-size: .85rem;
+}
+table.list td, table.grid td {
+  padding: 12px;
+  border-bottom: 1px solid var(--helpdesk-gray-100);
+}
+table.list tr:hover td { background: var(--helpdesk-gray-50); }
+
+/* ---------- Footer ---------- */
+#footer, .footer {
+  background: var(--helpdesk-navy-900) !important;
+  color: var(--helpdesk-gray-300) !important;
+  text-align: center;
+  padding: 20px;
+  font-size: .85rem;
+}
+#footer a, .footer a { color: var(--helpdesk-gold-500) !important; }
+
+/* ---------- FAQ / Knowledge base ---------- */
+.faq-category, .kb-category {
+  border-left: 4px solid var(--helpdesk-gold-500);
+  padding-left: 16px;
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  #header, .header { height: var(--helpdesk-header-height-mobile); min-height: var(--helpdesk-header-height-mobile); }
+
+  .helpdesk-nav-toggle { display: inline-block; margin-left: auto; }
+
+  #nav, ul.nav, .navbar {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: var(--helpdesk-header-height-mobile);
+    left: 0;
+    right: 0;
+    z-index: 999;
+    box-shadow: var(--helpdesk-shadow-lg);
+  }
+  #nav.helpdesk-nav-open, ul.nav.helpdesk-nav-open, .navbar.helpdesk-nav-open {
+    display: flex;
+  }
+  #nav ul, .navbar ul { flex-direction: column; width: 100%; }
+  #nav ul li, .navbar li { width: 100%; }
+  #nav ul li a, .navbar a { display: block; width: 100%; padding: 14px 20px !important; }
+
+  .panel, .container, .box { padding: 16px; border-radius: var(--helpdesk-radius-md); margin: 0 8px 16px; }
+
+  /* Turn wide ticket tables into stacked cards on small screens */
+  table.list, table.grid { border: 0; }
+  table.list thead, table.grid thead { display: none; }
+  table.list tr, table.grid tr {
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid var(--helpdesk-gray-200);
+    border-radius: var(--helpdesk-radius-md);
+    overflow: hidden;
+  }
+  table.list td, table.grid td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--helpdesk-gray-100);
+  }
+  table.list td::before, table.grid td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--helpdesk-gray-700);
+    text-align: left;
+    margin-right: 12px;
+  }
+
+  .btn, input[type="submit"] { width: 100%; }
+
+  input, textarea, select {
+    min-height: var(--helpdesk-touch-target);
+  }
+}
+
+@media (max-width: 480px) {
+  #header h1, .site-title { font-size: 1rem; }
+  .panel, .container, .box { padding: 14px; }
+}
+
+/* --- Landscape phones: reclaim vertical space --- */
+@media (max-width: 900px) and (orientation: landscape) {
+  #header, .header { min-height: 48px; }
+}
+
+/* ---------- Print (ticket printouts) ---------- */
+@media print {
+  #header, #nav, #footer, .helpdesk-nav-toggle { display: none !important; }
+  .panel, .container { box-shadow: none; border: none; }
+}

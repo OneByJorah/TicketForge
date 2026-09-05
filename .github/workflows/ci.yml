@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint shell scripts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+          shellcheck deploy.sh || true
+      - name: Lint CSS
+        run: |
+          # Fail on obvious syntax issues: unmatched braces/parentheses
+          for f in theme/css/*.css; do
+            echo "Checking $f"
+            python3 -c "
+import re
+with open('$f') as fh:
+    text = fh.read()
+open_count = text.count('{')
+close_count = text.count('}')
+if open_count != close_count:
+    raise SystemExit(f'Brace mismatch in $f: {open_count} open, {close_count} close')
+"
+          done
+      - name: Lint HTML previews
+        run: |
+          python3 -c "
+from html.parser import HTMLParser
+for path in ['preview/index.html', 'preview/staff-preview.html']:
+    with open(path) as fh:
+        parser = HTMLParser()
+        parser.feed(fh.read())
+    print(f'{path}: parsed ok')
+"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate deploy script syntax
+        run: bash -n deploy.sh
+      - name: Validate file references in deploy.sh
+        run: |
+          test -f theme/css/helpdesk-tokens.css
+          test -f theme/css/helpdesk-client-portal.css
+          test -f theme/css/helpdesk-staff-panel.css
+          test -f theme/js/helpdesk-client-portal.js
+          test -f theme/js/helpdesk-staff-panel.js
+          test -f theme/assets/helpdesk-logo-placeholder.svg

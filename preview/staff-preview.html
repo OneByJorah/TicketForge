@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helpdesk — Staff Panel Preview</title>
+<link rel="stylesheet" href="../theme/css/helpdesk-tokens.css">
+<link rel="stylesheet" href="../theme/css/helpdesk-staff-panel.css">
+<style>
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  #staff-header { display:flex; align-items:center; padding:0 18px; height:52px; gap:12px; }
+  #staff-header img.logo { max-height:30px; }
+  #staff-header .who { margin-left:auto; font-size:.82rem; }
+  ul.tabs { display:flex; padding:0 12px; list-style:none; margin:0; }
+  ul.tabs li a { padding:11px 16px; display:inline-block; text-decoration:none; }
+  .layout { display:grid; grid-template-columns:200px 1fr; min-height:calc(100vh - 88px); }
+  .sidebar { padding:16px 0; }
+  .sidebar a { display:block; padding:9px 18px; text-decoration:none; font-size:.85rem; }
+  .content { padding:20px; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:18px; }
+  .stat { background:#fff; border:1px solid #dde1e7; border-radius:8px; padding:14px; text-align:center; }
+  .stat .n { font-size:1.5rem; font-weight:800; }
+  .stat .l { font-size:.72rem; text-transform:uppercase; color:#6b7280; }
+  .toolbar { display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+  @media (max-width:800px){ .stats{grid-template-columns:repeat(2,1fr);} }
+</style>
+</head>
+<body>
+
+<div id="staff-header">
+  <img class="logo" src="../theme/assets/helpdesk-logo-placeholder.svg" alt="Helpdesk logo">
+  <strong>Helpdesk — Agent Panel</strong>
+  <div class="who">🔔 3 &nbsp;|&nbsp; J. Technician (Network/AD) &nbsp;|&nbsp; Logout</div>
+</div>
+
+<ul id="nav" class="tabs">
+  <li class="active"><a href="#">Tickets</a></li>
+  <li><a href="#">Knowledgebase</a></li>
+  <li><a href="#">Reports</a></li>
+  <li><a href="#">Admin</a></li>
+</ul>
+
+<div class="layout">
+  <div id="sidebar" class="sidebar">
+    <a href="#" class="active">Open (14)</a>
+    <a href="#">Overdue (3)</a>
+    <a href="#">My Tickets (6)</a>
+    <a href="#">Network/AD</a>
+    <a href="#">End User Support</a>
+    <a href="#">VoIP / Phones</a>
+    <a href="#">Applications</a>
+  </div>
+
+  <div class="content">
+    <h2>Open Tickets — Network/AD</h2>
+
+    <div class="stats">
+      <div class="stat"><div class="n">14</div><div class="l">Open</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">Overdue</div></div>
+      <div class="stat"><div class="n">1.8h</div><div class="l">Avg Response</div></div>
+      <div class="stat"><div class="n">96%</div><div class="l">SLA Met (30d)</div></div>
+    </div>
+
+    <div class="toolbar">
+      <button class="btn orange">+ New Ticket</button>
+      <button class="btn">Assign to Me</button>
+      <select><option>All Priorities</option><option>High</option><option>Normal</option><option>Low</option></select>
+      <input type="text" placeholder="Search tickets...">
+    </div>
+
+    <table class="list">
+      <thead>
+        <tr><th>#</th><th>Subject</th><th>Requestor</th><th>School</th><th>Priority</th><th>Status</th><th>Updated</th></tr>
+      </thead>
+      <tbody>
+        <tr class="overdue">
+          <td>#10482</td><td>VLAN 2 VoIP DHCP not assigning</td><td>M. Petersen</td><td>Campus A</td>
+          <td>High</td><td><span class="Ticket-status label">Overdue</span></td><td>2h ago</td>
+        </tr>
+        <tr>
+          <td>#10481</td><td>Password reset — locked out</td><td>D. Francis</td><td>Central Office</td>
+          <td>Normal</td><td><span class="Ticket-status label">Open</span></td><td>25m ago</td>
+        </tr>
+        <tr class="overdue">
+          <td>#10479</td><td>Core switch SW-03 flapping</td><td>IT Monitoring</td><td>Data Center</td>
+          <td>High</td><td><span class="Ticket-status label">Overdue</span></td><td>4h ago</td>
+        </tr>
+        <tr>
+          <td>#10477</td><td>Smartboard no signal, Rm 214</td><td>R. Charles</td><td>Building 2</td>
+          <td>Low</td><td><span class="Ticket-status label">Pending</span></td><td>1d ago</td>
+        </tr>
+        <tr>
+          <td>#10470</td><td>Wifi down — east wing</td><td>Front Office</td><td>Campus A</td>
+          <td>Normal</td><td><span class="Ticket-status label">Closed</span></td><td>2d ago</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src="../theme/js/helpdesk-staff-panel.js"></script>
+</body>
+</html>

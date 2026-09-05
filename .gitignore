@@ -1,0 +1,12 @@
+.DS_Store
+*.bak
+*.bak-*
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+*.swp
+*.tmp
+
+# OneByJorah portfolio tooling
+.venv-screenshot/

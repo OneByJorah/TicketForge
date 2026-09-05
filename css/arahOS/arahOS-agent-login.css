@@ -1,0 +1,166 @@
+/* ============================================================
+   arahOS Help Desk — Unified Agent Login (split-screen)
+   Left: credentials form · Right: navy status dashboard
+   ============================================================ */
+
+:root{
+  --vl-navy-900:#0a1f44;
+  --vl-navy-800:#102a56;
+  --vl-navy-700:#163a70;
+  --vl-navy-600:#1e4c8f;
+  --vl-gold-500:#f2a900;
+  --vl-gold-600:#d69400;
+  --vl-green:#1e8e5a;
+  --vl-ink:#1a1d23;
+  --vl-gray-500:#6b7280;
+  --vl-gray-300:#c3c9d1;
+  --vl-gray-200:#e2e6ec;
+  --vl-gray-100:#eef1f5;
+  --vl-radius:16px;
+  --vl-font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body#loginBody{
+  margin:0; font-family:var(--vl-font); color:var(--vl-ink);
+  background:#fff; min-height:100vh;
+}
+
+/* kill legacy osTicket login chrome */
+#brickwall,#blur,#background{display:none !important;}
+
+/* ---- split layout ---- */
+#arahOS-login-wrap{
+  display:flex; min-height:100vh; width:100%;
+}
+#arahOS-login-left{
+  flex:0 0 42%; max-width:42%;
+  display:flex; align-items:center; justify-content:center;
+  padding:48px 44px; background:#fff;
+}
+#arahOS-login-right{
+  flex:1 1 58%;
+  background:linear-gradient(160deg,var(--vl-navy-900),var(--vl-navy-800) 60%,var(--vl-navy-700));
+  display:flex; align-items:center; justify-content:center;
+  padding:48px 40px; position:relative; overflow:hidden;
+}
+#arahOS-login-right::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(circle at 80% 15%,rgba(242,169,0,.14),transparent 45%);
+}
+
+/* ---- left: form ---- */
+#arahOS-login-card{ width:100%; max-width:380px; }
+.vl-brandline{ display:flex; align-items:center; gap:12px; margin-bottom:26px; }
+.vl-badge{
+  width:44px;height:44px;border-radius:10px;background:var(--vl-gold-500);
+  color:var(--vl-navy-900);font-weight:800;font-size:1.15rem;
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+}
+.vl-brandtext .t{font-weight:800;font-size:1.05rem;letter-spacing:.02em;color:var(--vl-ink);line-height:1.1;}
+.vl-brandtext .s{font-size:.72rem;color:var(--vl-gray-500);text-transform:uppercase;letter-spacing:.06em;}
+#arahOS-login-card h2{margin:0 0 4px;font-size:1.5rem;color:var(--vl-navy-700);font-weight:800;}
+#arahOS-login-card .vl-sub{margin:0 0 22px;color:var(--vl-gray-500);font-size:.9rem;}
+
+#arahOS-login-card .vl-msg{
+  background:#eef4ff;border-left:4px solid var(--vl-navy-600);color:var(--vl-navy-700);
+  padding:9px 12px;border-radius:8px;font-size:.85rem;margin-bottom:16px;display:none;
+}
+#arahOS-login-card .vl-msg.show{display:block;}
+#arahOS-login-card .vl-msg.error{background:#fdecea;border-left-color:#d64545;color:#8a1f1a;}
+
+.vl-field{position:relative;margin-bottom:14px;}
+.vl-field i{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  font-size:1rem;color:var(--vl-gray-500);
+}
+.vl-field i.fa-user{color:#7b5cff;}
+.vl-field i.fa-lock{color:var(--vl-gold-600);}
+.vl-field input{
+  width:100%;padding:13px 14px 13px 42px;font-size:.95rem;font-family:inherit;
+  border:1px solid var(--vl-gray-200);border-radius:10px;background:#fbfcfe;color:var(--vl-ink);
+  transition:border-color .15s, box-shadow .15s;
+}
+.vl-field input:focus{
+  outline:none;border-color:var(--vl-gold-500);
+  box-shadow:0 0 0 3px rgba(242,169,0,.28);background:#fff;
+}
+.vl-hint{font-size:.72rem;color:var(--vl-gray-500);margin:2px 2px 16px;line-height:1.5;}
+.vl-hint strong{color:var(--vl-navy-700);}
+
+#arahOS-login-card button.vl-signin{
+  width:100%;padding:13px;border:none;border-radius:999px;
+  background:var(--vl-navy-800);color:#fff;font-weight:700;font-size:.98rem;
+  cursor:pointer;transition:background .15s;font-family:inherit;
+}
+#arahOS-login-card button.vl-signin:hover{background:var(--vl-navy-700);}
+#arahOS-login-card button.vl-signin:disabled{opacity:.6;cursor:default;}
+
+.vl-links{margin-top:18px;font-size:.85rem;color:var(--vl-gray-500);}
+.vl-links a{color:var(--vl-navy-600);font-weight:600;text-decoration:underline;}
+.vl-links .row{margin:6px 0;}
+.vl-reset.hidden{display:none;}
+.vl-foot{margin-top:26px;font-size:.75rem;color:var(--vl-gray-500);border-top:1px solid var(--vl-gray-100);padding-top:14px;}
+
+/* ---- right: status dashboard ---- */
+.vl-panel{
+  position:relative;z-index:1;width:100%;max-width:560px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--vl-radius);padding:30px 30px 24px;
+  backdrop-filter:blur(8px);color:#fff;box-shadow:0 20px 50px rgba(0,0,0,.28);
+}
+.vl-panel h3{margin:0 0 4px;font-size:1.35rem;font-weight:800;}
+.vl-panel .vl-panelsub{margin:0 0 18px;color:var(--vl-gray-300);font-size:.85rem;}
+.vl-allok{
+  display:inline-flex;align-items:center;gap:8px;background:rgba(30,142,90,.22);
+  border:1px solid rgba(30,142,90,.5);color:#8ff0be;border-radius:999px;
+  padding:6px 14px;font-size:.8rem;font-weight:700;margin-bottom:20px;
+}
+.vl-allok .dot{width:9px;height:9px;border-radius:50%;background:#2fe38a;box-shadow:0 0 0 4px rgba(47,227,138,.2);}
+.vl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.vl-svc{
+  background:rgba(10,31,68,.45);border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;padding:14px;
+}
+.vl-svc .h{display:flex;align-items:center;gap:9px;font-weight:700;font-size:.92rem;margin-bottom:5px;}
+.vl-svc .h i{font-size:1rem;}
+.vl-svc .st{font-size:.75rem;color:#8ff0be;font-weight:600;text-transform:uppercase;letter-spacing:.03em;}
+.vl-svc .d{font-size:.76rem;color:var(--vl-gray-300);margin-top:3px;line-height:1.4;}
+.i-green{color:#2fe38a;} .i-gold{color:var(--vl-gold-500);} .i-blue{color:#6db3ff;}
+.vl-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.vl-tile{
+  background:rgba(10,31,68,.5);border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;padding:11px 8px;text-align:center;
+  font-size:.66rem;font-weight:700;letter-spacing:.05em;color:var(--vl-gray-300);text-transform:uppercase;
+}
+.vl-tile b{display:block;color:var(--vl-gold-500);font-size:.8rem;margin-bottom:2px;}
+.vl-checked{text-align:right;font-size:.7rem;color:var(--vl-gray-300);opacity:.8;}
+
+/* ---- responsive ---- */
+@media (max-width:900px){
+  #arahOS-login-right{display:none;}
+  #arahOS-login-left{flex:1 1 100%;max-width:100%;}
+}
+
+#poweredBy,#company{position:static;text-align:center;}
+
+/* override legacy scp/css/login.css h3 (which is red/uppercase) */
+#arahOS-login-wrap h3#login-message{color:var(--vl-navy-700);text-transform:none;font-weight:600;text-align:left;}
+#arahOS-login-wrap h3#login-message.error{color:#8a1f1a;}
+#arahOS-login-right .vl-panel h3{color:#fff !important;text-transform:none;text-align:left;}
+#arahOS-login-right .vl-svc .st{text-transform:uppercase;}
+
+/* ============================================================
+   arahOS — Banner logo on agent login (left panel top)
+   ============================================================ */
+.vl-brandline-logo { margin-bottom: 18px !important; }
+.vl-banner-logo {
+  display: block !important;
+  max-width: 300px !important;
+  width: 100% !important;
+  height: auto !important;
+}
+@media (max-width: 480px) {
+  .vl-banner-logo { max-width: 220px !important; }
+}

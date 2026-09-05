@@ -1,0 +1,57 @@
+{
+  "name": "arahOS Help Desk",
+  "short_name": "arahOS Help Desk",
+  "description": "arahOS Support Portal",
+  "id": "/",
+  "start_url": "/index.php",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1f44",
+  "theme_color": "#0a1f44",
+  "lang": "en-US",
+  "categories": ["productivity", "business"],
+  "icons": [
+    {
+      "src": "/images/arahOS/pwa/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/arahOS/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/arahOS/pwa/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open a New Ticket",
+      "short_name": "New Ticket",
+      "description": "Submit a new support request",
+      "url": "/open.php",
+      "icons": [{ "src": "/images/arahOS/pwa/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Check Ticket Status",
+      "short_name": "Ticket Status",
+      "description": "Track an existing ticket",
+      "url": "/login.php",
+      "icons": [{ "src": "/images/arahOS/pwa/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Knowledgebase",
+      "short_name": "FAQ",
+      "description": "Browse help articles",
+      "url": "/kb/index.php",
+      "icons": [{ "src": "/images/arahOS/pwa/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+# arahOS OIT Help Desk — PWA headers
+AddType application/manifest+json .webmanifest
+AddType text/javascript .js
+
+# Service worker must be served with no-cache so updates apply immediately
+<Files "sw.js">
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+</Files>
+
+# Manifest short cache
+<Files "manifest.webmanifest">
+  Header set Cache-Control "public, max-age=86400"
+</Files>
+
+# Icons long cache
+<FilesMatch "\.(png|jpg|jpeg|svg|ico)$">
+  Header set Cache-Control "public, max-age=604800"
+</FilesMatch>

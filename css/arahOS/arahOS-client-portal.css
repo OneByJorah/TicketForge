@@ -1,0 +1,1916 @@
+/* ============================================================
+   arahOS Help Desk — Client Portal Theme (v5 rewrite)
+   Every override marked !important to beat osTicket theme.css.
+   Target: osTicket 1.18.x
+   ============================================================ */
+
+@import url("arahOS-tokens.css");
+
+/* ---------- Reset / base ---------- */
+* { box-sizing: border-box !important; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--arahOS-font-base) !important;
+  background: var(--arahOS-gray-50) !important;
+  color: var(--arahOS-gray-900) !important;
+  -webkit-text-size-adjust: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ---------- Container: break out of narrow 840px box ---------- */
+#container {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  background: var(--arahOS-gray-50) !important;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4) !important;
+  float: none !important;
+  border-radius: 0 0 8px 8px !important;
+}
+
+/* ---------- Header / masthead ---------- */
+#header {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  height: auto !important;
+  min-height: 70px !important;
+  padding: 12px 24px !important;
+  background: linear-gradient(180deg, var(--arahOS-navy-900), var(--arahOS-navy-800)) !important;
+  border-bottom: 3px solid var(--arahOS-gold-500) !important;
+  overflow: visible !important;
+}
+
+/* Logo */
+#header a#logo,
+#logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: auto !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+}
+#header a#logo img,
+img#logo {
+  content: url("../../images/arahOS/arahOS-seal.png") !important;
+  height: 64px !important;
+  width: auto !important;
+  max-height: 64px !important;
+  max-width: 100% !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-sizing: content-box !important;
+  box-shadow: 0 1px 4px rgba(10,31,68,0.35) !important;
+  vertical-align: middle !important;
+}
+
+/* Header right side (Guest User | Sign In) — push to far right */
+#header .pull-right,
+#header div.pull-right,
+#header .flush-right {
+  float: none !important;
+  width: auto !important;
+  max-width: none !important;
+  color: #ffffff !important;
+  font-size: 0.85rem !important;
+  margin: 0 !important;
+  margin-left: auto !important;
+  padding: 0 !important;
+  order: 2 !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+#header .pull-right p,
+#header div.pull-right p {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: right !important;
+}
+
+/* Logo — force to far left, kill the float */
+#header a#logo,
+a#logo,
+.pull-left {
+  float: none !important;
+  order: 0 !important;
+  flex-shrink: 0 !important;
+}
+#header .pull-right a,
+#header p a {
+  color: var(--arahOS-gold-500) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+#header .pull-right a:hover,
+#header p a:hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+#header .valign-helper { display: none !important; }
+
+/* Dark mode toggle */
+arahOS-theme-toggle {
+  background: none !important;
+  order: 3 !important;
+  flex-shrink: 0 !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  color: var(--arahOS-white) !important;
+  border-radius: 999px !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  margin-left: 10px !important;
+  font-size: 1rem !important;
+}
+arahOS-theme-toggle:hover { background: rgba(255,255,255,0.12) !important; }
+
+/* ---------- Primary nav ---------- */
+#nav,
+ul#nav {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 24px !important;
+  height: auto !important;
+  min-height: 44px !important;
+  background: var(--arahOS-navy-700) !important;
+  border-top: none !important;
+  border-bottom: 1px solid var(--arahOS-navy-900) !important;
+  box-shadow: none !important;
+  white-space: normal !important;
+}
+
+#nav li {
+  display: inline-block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#nav li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: auto !important;
+  min-height: 44px !important;
+  line-height: 1.4 !important;
+  width: auto !important;
+  padding: 10px 18px !important;
+  margin: 0 !important;
+  margin-left: 0 !important;
+  color: var(--arahOS-white) !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  background-position: 0 0 !important;
+  background-repeat: no-repeat !important;
+  background-size: 0 !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+}
+
+#nav li a:hover {
+  background: var(--arahOS-navy-600) !important;
+  color: var(--arahOS-gold-100) !important;
+  background-image: none !important;
+}
+
+#nav li a.active,
+#nav li a.active:hover {
+  background: var(--arahOS-gold-500) !important;
+  color: var(--arahOS-navy-900) !important;
+  font-weight: 700 !important;
+  background-image: none !important;
+}
+
+/* Remove osTicket icon backgrounds from nav */
+#nav li a.home,
+#nav li a.kb,
+#nav li a.new,
+#nav li a.status,
+#nav li a.tickets {
+  background-image: none !important;
+  padding-left: 18px !important;
+}
+
+/* Mobile hamburger (injected by JS) */
+arahOS-nav-toggle {
+  display: none !important;
+  background: none !important;
+  order: 4 !important;
+  flex-shrink: 0 !important;
+  border: none !important;
+  color: var(--arahOS-white) !important;
+  font-size: 1.6rem !important;
+  cursor: pointer !important;
+  padding: 8px 12px !important;
+}
+
+/* ---------- Content ---------- */
+#content {
+  padding: 24px !important;
+  margin: 0 !important;
+  min-height: 300px !important;
+  background: transparent !important;
+}
+
+/* ---------- Landing page ---------- */
+#landing_page {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 24px !important;
+  align-items: flex-start !important;
+}
+
+#landing_page .main-content {
+  flex: 1 1 60% !important;
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+#landing_page .sidebar,
+#landing_page .sidebar.pull-right {
+  flex: 0 1 320px !important;
+  float: none !important;
+  width: 320px !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  clear: none !important;
+}
+
+#landing_page .sidebar .content:empty {
+  display: none !important;
+}
+
+#landing_page .thread-body { padding: 0 !important; }
+
+#landing_page h1,
+.main-content h1 {
+  color: var(--arahOS-gold-500) !important;
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  margin: 0 0 12px !important;
+  line-height: 1.2 !important;
+}
+
+#landing_page p,
+.main-content p {
+  color: var(--arahOS-gray-700) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+/* ---------- Front-page action buttons ---------- */
+.front-page-button {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.front-page-button p {
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+}
+
+.front-page-button a,
+a.blue.button,
+a.green.button,
+.blue.button,
+.green.button {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: var(--arahOS-gold-500) !important;
+  color: var(--arahOS-navy-900) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  padding: 14px 20px !important;
+  max-width: 100% !important;
+  box-shadow: 0 2px 6px rgba(10,31,68,0.15) !important;
+  text-shadow: none !important;
+  cursor: pointer !important;
+  line-height: 1.3 !important;
+}
+
+.front-page-button a:hover,
+a.blue.button:hover,
+a.green.button:hover,
+.blue.button:hover,
+.green.button:hover {
+  background: var(--arahOS-gold-600) !important;
+  color: var(--arahOS-navy-900) !important;
+  text-decoration: none !important;
+}
+
+/* ---------- General buttons ---------- */
+.btn,
+input[type="submit"],
+button.btn,
+a.btn {
+  background: var(--arahOS-navy-700) !important;
+  color: var(--arahOS-white) !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 10px 18px !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  text-shadow: none !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15) !important;
+}
+.btn:hover,
+input[type="submit"]:hover {
+  background: var(--arahOS-navy-600) !important;
+}
+.btn.orange,
+.btn.primary,
+button[type="submit"].orange,
+.btn-primary {
+  background: var(--arahOS-gold-500) !important;
+  color: var(--arahOS-navy-900) !important;
+}
+.btn.orange:hover,
+.btn.primary:hover,
+.btn-primary:hover {
+  background: var(--arahOS-gold-600) !important;
+}
+
+/* ---------- Forms ---------- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+textarea,
+select {
+  border: 1px solid var(--arahOS-gray-300) !important;
+  border-radius: 6px !important;
+  padding: 10px 12px !important;
+  font-size: 1rem !important;
+  font-family: var(--arahOS-font-base) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+  background: #fff !important;
+  color: var(--arahOS-gray-900) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: var(--arahOS-gold-500) !important;
+  box-shadow: 0 0 0 3px rgba(242,169,0,0.15) !important;
+}
+
+label {
+  font-weight: 600 !important;
+  color: var(--arahOS-gray-700) !important;
+}
+
+fieldset {
+  border: 1px solid var(--arahOS-gray-200) !important;
+  border-radius: 8px !important;
+  padding: 16px !important;
+  margin-bottom: 16px !important;
+}
+
+/* ---------- Cards / panels ---------- */
+.panel,
+.well,
+.box,
+.ticket-panel {
+  background: var(--arahOS-white) !important;
+  border: 1px solid var(--arahOS-gray-200) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+  padding: 24px !important;
+}
+
+/* ---------- Tables ---------- */
+table.list,
+table.grid {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+table.list th,
+table.grid th {
+  background: var(--arahOS-navy-900) !important;
+  color: var(--arahOS-white) !important;
+  text-align: left !important;
+  padding: 10px 12px !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+}
+table.list td,
+table.grid td {
+  padding: 12px !important;
+  border-bottom: 1px solid var(--arahOS-gray-100) !important;
+  color: var(--arahOS-gray-900) !important;
+}
+table.list tr:hover td { background: var(--arahOS-gray-50) !important; }
+
+/* ---------- Status badges ---------- */
+.status,
+.label,
+.badge {
+  border-radius: 999px !important;
+  padding: 4px 12px !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+}
+.status.open,
+.label-success { background: var(--arahOS-st-open) !important; color: #fff !important; }
+.status.overdue,
+.label-danger { background: var(--arahOS-st-overdue) !important; color: #fff !important; }
+.status.pending,
+.label-warning { background: var(--arahOS-st-pending) !important; color: #fff !important; }
+.status.closed,
+.label-default { background: var(--arahOS-st-closed) !important; color: #fff !important; }
+
+/* ---------- Footer ---------- */
+#footer {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  clear: both !important;
+  background: var(--arahOS-navy-900) !important;
+  color: var(--arahOS-gray-300) !important;
+  text-align: center !important;
+  padding: 20px 24px !important;
+  font-size: 0.85rem !important;
+  margin: 0 !important;
+  float: none !important;
+  border-top: 3px solid var(--arahOS-gold-500) !important;
+}
+#footer p {
+  color: var(--arahOS-gray-300) !important;
+  font-size: 0.85rem !important;
+  margin: 4px 0 !important;
+}
+#footer a,
+#footer a:visited {
+  color: var(--arahOS-gold-500) !important;
+  text-decoration: none !important;
+}
+#footer #arahosCredit {
+  color: var(--arahOS-gold-500) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  margin: 6px 0 0 !important;
+}
+#footer #poweredBy {
+  display: none !important;
+}
+
+/* ---------- Links ---------- */
+a { color: var(--arahOS-gold-500) !important; text-decoration: none !important; }
+a:hover { color: #ffffff !important; }
+
+/* ---------- Skip link (accessibility) ---------- */
+arahOS-skip-link {
+  position: absolute !important;
+  left: -9999px !important;
+  top: 0 !important;
+  background: var(--arahOS-gold-500) !important;
+  color: var(--arahOS-navy-900) !important;
+  padding: 12px 20px !important;
+  font-weight: 700 !important;
+  z-index: 9999 !important;
+  border-radius: 0 0 6px 0 !important;
+}
+arahOS-skip-link:focus { left: 0 !important; }
+
+/* ---------- arahOS credit line (footer) ---------- */
+/* (styled above in #footer #arahosCredit) */
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+
+/* Tablets and small desktops */
+@media (max-width: 900px) {
+  #nav,
+  ul#nav {
+    display: none !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    top: 70px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 999 !important;
+    background: var(--arahOS-navy-800) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+    padding: 0 !important;
+  }
+  #navarahOS-nav-open,
+  ul#navarahOS-nav-open { display: flex !important; }
+  #nav li { width: 100% !important; }
+  #nav li a {
+    width: 100% !important;
+    display: block !important;
+    padding: 14px 24px !important;
+    text-align: left !important;
+  }
+
+  arahOS-nav-toggle {
+    display: inline-block !important;
+    margin-left: auto !important;
+  }
+
+  #landing_page { flex-direction: column !important; }
+  #landing_page .main-content {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    order: 1 !important;
+  }
+  #landing_page .sidebar,
+  #landing_page .sidebar.pull-right {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    order: 2 !important;
+    margin-top: 20px !important;
+  }
+
+  .panel, .well, .box { padding: 16px !important; }
+
+  /* Tables to cards */
+  table.list, table.grid { border: 0 !important; }
+  table.list thead, table.grid thead { display: none !important; }
+  table.list tr, table.grid tr {
+    display: block !important;
+    margin-bottom: 12px !important;
+    border: 1px solid var(--arahOS-gray-200) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+  }
+  table.list td, table.grid td {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    text-align: right !important;
+    padding: 10px 14px !important;
+    border-bottom: 1px solid var(--arahOS-gray-100) !important;
+  }
+  table.list td::before, table.grid td::before {
+    content: attr(data-label) !important;
+    font-weight: 700 !important;
+    color: var(--arahOS-gray-700) !important;
+    text-align: left !important;
+    margin-right: 12px !important;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  #header {
+    flex-wrap: wrap !important;
+    padding: 10px 14px !important;
+    min-height: 56px !important;
+  }
+  #header a#logo img,
+  img#logo {
+    height: 56px !important;
+    max-height: 56px !important;
+  }
+  #header .pull-right,
+  #header div.pull-right {
+    font-size: 0.78rem !important;
+  }
+
+  #content { padding: 16px 14px !important; }
+
+  #landing_page h1,
+  .main-content h1 {
+    font-size: 1.3rem !important;
+  }
+
+  .front-page-button a,
+  a.blue.button,
+  a.green.button,
+  .blue.button,
+  .green.button {
+    font-size: 1rem !important;
+    padding: 14px !important;
+    width: 100% !important;
+  }
+
+  #footer { padding: 16px 14px !important; }
+
+  .btn, input[type="submit"] { width: 100% !important; }
+  input, textarea, select { min-height: 44px !important; }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  #header .pull-right,
+  #header div.pull-right { display: none !important; }
+}
+
+/* Landscape phone header fix */
+@media (max-width: 900px) and (orientation: landscape) {
+  #header { min-height: 64px !important; }
+}
+
+/* Print */
+@media print {
+  #header, #nav, #footer, arahOS-nav-toggle { display: none !important; }
+  #container { box-shadow: none !important; max-width: 100% !important; }
+}
+
+/* ============================================================
+   DARK PORTAL OVERRIDES — form controls, buttons, inputs, h1
+   ============================================================ */
+
+/* Force dark inputs that match body */
+/* Light-mode form controls (default) */
+input[type="text"], input[type="email"], input[type="tel"], input[type="password"],
+input[type="search"], input[type="number"], input[type="url"], input:not([type]),
+textarea, select {
+  background: #ffffff !important;
+  color: var(--arahOS-gray-900) !important;
+  border: 1px solid var(--arahOS-gray-300) !important;
+  border-radius: var(--arahOS-radius-md) !important;
+  padding: 10px 12px !important;
+  font-size: 0.95rem !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+[data-theme="dark"] input[type="text"], [data-theme="dark"] input[type="email"], [data-theme="dark"] input[type="tel"], [data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="search"], [data-theme="dark"] input[type="number"], [data-theme="dark"] input[type="url"], [data-theme="dark"] input:not([type]),
+[data-theme="dark"] textarea, [data-theme="dark"] select,
+bodyarahOS-dark input[type="text"], bodyarahOS-dark input[type="email"], bodyarahOS-dark input[type="tel"], bodyarahOS-dark input[type="password"],
+bodyarahOS-dark input[type="search"], bodyarahOS-dark input[type="number"], bodyarahOS-dark input[type="url"], bodyarahOS-dark input:not([type]),
+bodyarahOS-dark textarea, bodyarahOS-dark select {
+  background: rgba(255,255,255,0.06) !important;
+  color: #eef0f3 !important;
+  border: 1px solid var(--arahOS-gray-300) !important;
+  border-radius: var(--arahOS-radius-md) !important;
+  padding: 10px 12px !important;
+  font-size: 0.95rem !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--arahOS-gold-500) !important;
+  box-shadow: 0 0 0 3px rgba(242,169,0,0.3) !important;
+  outline: none !important;
+}
+
+/* Inputs with placeholder text */
+input::placeholder, textarea::placeholder {
+  color: #8a93a3 !important;
+}
+
+/* Select dropdown arrow */
+select {
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23c3c9d1' height='12' viewBox='0 0 12 12' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M2 4l4 4 4-4'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  padding-right: 32px !important;
+}
+
+/* All h1 — force arahOS gold (overrides various osTicket blue rules) */
+h1 { color: var(--arahOS-gold-500) !important; }
+.main-content h1, #content h1, #landing_page h1 { color: var(--arahOS-gold-500) !important; }
+
+/* h2/h3 — softer light */
+h2, h3 { color: var(--arahOS-gray-900) !important; }
+
+/* Labels / form-labels */
+label, th, .form-label, .field-label { color: var(--arahOS-gray-700) !important; }
+[data-theme="dark"] label, [data-theme="dark"] th, [data-theme="dark"] .form-label, [data-theme="dark"] .field-label,
+bodyarahOS-dark label, bodyarahOS-dark th, bodyarahOS-dark .form-label, bodyarahOS-dark .field-label { color: var(--arahOS-gray-300) !important; }
+
+/* All buttons: solid navy w/ gold hover */
+button, input[type="submit"], input[type="reset"], input[type="button"], .btn, .button {
+  background: var(--arahOS-navy-700) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--arahOS-navy-700) !important;
+  border-radius: var(--arahOS-radius-md) !important;
+  padding: 10px 18px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, border-color 0.15s ease !important;
+}
+button:hover, input[type="submit"]:hover, .btn:hover {
+  background: var(--arahOS-gold-500) !important;
+  color: var(--arahOS-navy-900) !important;
+  border-color: var(--arahOS-gold-500) !important;
+}
+
+/* Primary CTA (Open New Ticket, etc) — keep the gold treatment */
+.action-button, .primary, a.btn-primary {
+  background: var(--arahOS-gold-500) !important;
+  color: var(--arahOS-navy-900) !important;
+  border: none !important;
+}
+.action-button:hover, .primary:hover, a.btn-primary:hover {
+  background: var(--arahOS-gold-600) !important;
+  color: var(--arahOS-navy-900) !important;
+}
+
+/* Tables / form layout */
+table, th, td {
+  background: transparent !important;
+  color: var(--arahOS-gray-900) !important;
+  border-color: var(--arahOS-gray-200) !important;
+}
+[data-theme="dark"] table, [data-theme="dark"] th, [data-theme="dark"] td,
+bodyarahOS-dark table, bodyarahOS-dark th, bodyarahOS-dark td {
+  color: var(--arahOS-gray-300) !important;
+}
+table.form th, table.form td {
+  background: transparent !important;
+  color: var(--arahOS-gray-900) !important;
+}
+
+/* Required asterisk */
+.red, .required, strong.required { color: var(--arahOS-gold-500) !important; }
+
+/* Page footer */
+#footer {
+  background: #0E1117 !important;
+  color: var(--arahOS-gray-300) !important;
+  padding: 16px 24px !important;
+  border-top: 3px solid var(--arahOS-gold-500) !important;
+}
+#footer a { color: var(--arahOS-gold-100) !important; }
+#footer a:hover { color: var(--arahOS-gold-500) !important; }
+
+/* ============================================================
+   FULL-WIDTH LAYOUT — kill max-width cap + gutters
+   ============================================================ */
+#container {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+#content,
+#landing_page {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 32px 48px !important;
+}
+#header {
+  padding: 12px 48px !important;
+}
+ul#nav {
+  padding: 0 48px !important;
+}
+#footer {
+  padding: 20px 48px !important;
+}
+@media (max-width: 768px) {
+  #content, #landing_page { padding: 20px 16px !important; }
+  #header { padding: 12px 16px !important; }
+  ul#nav { padding: 0 16px !important; }
+  #footer { padding: 16px !important; }
+}
+
+/* ============================================================
+   AUTH PAGES — split-panel login like passwordreset.k12.vi
+   Activated on <body class="auth-page">
+   ============================================================ */
+
+/* Hide default chrome inside split-panel layout */
+body.auth-page #header,
+body.auth-page ul#nav,
+body.auth-page #footer,
+body.auth-page .warning_bar,
+body.auth-page .error_bar { display: none !important; }
+
+/* Use the body itself as the canvas */
+body.auth-page {
+  background: #f2f6fb !important;
+  color: #1a2436 !important;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh;
+}
+
+body.auth-page #container {
+  background: transparent !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+body.auth-page #content {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: auto !important;
+  background: transparent !important;
+}
+
+/* Split grid */
+#auth {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 480px) 1fr;
+}
+
+/* Left = form panel */
+#auth-left {
+  background: linear-gradient(180deg, #ffffff 0%, #f7fafd 100%);
+  border-right: 1px solid #e6edf5;
+  padding: 36px 40px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+
+/* Right = hero system status */
+#auth-right {
+  background: url("images/arahOS/arahOS-bg.jpg") center/cover no-repeat, linear-gradient(135deg, #1c3d63 0%, #245380 100%);
+  background-blend-mode: overlay;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+#auth-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 20%, rgba(255,255,255,.14) 0%, transparent 45%);
+  pointer-events: none;
+}
+/* Fallback if bg image missing - keep navy gradient */
+#auth-right { background-color: #1c3d63; }
+
+/* Animated logo */
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 28px;
+  animation: auth-float 4.5s ease-in-out infinite;
+}
+.logo-wrap img {
+  height: 110px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 16px 40px rgba(32,58,94,.25));
+  animation: auth-glow 2.8s ease-in-out infinite alternate;
+}
+.logo-ring {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid rgba(32,58,94,.10);
+  position: absolute;
+  animation: auth-ripple 2.8s ease-out infinite;
+}
+.logo-ring:nth-child(2) { animation-delay: .9s; }
+.logo-ring:nth-child(3) { animation-delay: 1.8s; }
+.logo-outer {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+@keyframes auth-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes auth-glow  { 0%{filter:drop-shadow(0 10px 30px rgba(32,58,94,.20))} 100%{filter:drop-shadow(0 18px 50px rgba(32,58,94,.40))} }
+@keyframes auth-ripple { 0%{transform:scale(1);opacity:.55} 100%{transform:scale(2.2);opacity:0} }
+
+body.auth-page .auth-title, body.auth-page h1.auth-title, body.auth-page h1, #auth-left .auth-title {
+  margin: 6px 0 0 !important;
+  font-size: 26px !important;
+  font-weight: 750 !important;
+  color: #203a5e !important;
+  letter-spacing: -.3px !important;
+}
+.auth-subtitle {
+  color: #5a7089;
+  margin: 6px 0 26px;
+  font-size: 15px;
+}
+
+/* Form */
+.auth-page .form-wrap {
+  width: 100%;
+  max-width: 340px;
+  text-align: left;
+}
+.auth-page .form-group {
+  position: relative;
+  margin-bottom: 14px;
+}
+body.auth-page .auth-control,
+body.auth-page input.auth-control {
+  display: block !important;
+  width: 100% !important;
+  padding: 13px 14px 13px 46px !important;
+  font-size: 15px !important;
+  color: #1f2b3a !important;
+  background: #ffffff !important;
+  border: 1px solid #d6e2f0 !important;
+  border-radius: 10px !important;
+  outline: none !important;
+  transition: border-color .15s, box-shadow .15s !important;
+  box-sizing: border-box !important;
+  height: auto !important;
+}
+.auth-control:focus {
+  border-color: #203a5e;
+  box-shadow: 0 0 0 3px rgba(32,58,94,.18);
+}
+.auth-control-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8aa0ba;
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.auth-alert {
+  min-height: 18px;
+  margin: 0 0 14px;
+  color: #dc2626;
+  font-size: 13.5px;
+  text-align: center;
+  padding: 8px 10px;
+  background: rgba(220,38,38,.08);
+  border: 1px solid rgba(220,38,38,.25);
+  border-radius: 8px;
+}
+body.auth-page button.btn-primary,
+body.auth-page input[type=submit].btn-primary,
+body.auth-page .btn.btn-primary {
+  width: 100% !important;
+  padding: 13px 18px !important;
+  border-radius: 10px !important;
+  border: 0 !important;
+  background: linear-gradient(135deg, #203a5e, #2a5080) !important;
+  color: #fff !important;
+  font-size: 15px !important;
+  font-weight: 650 !important;
+  cursor: pointer !important;
+  transition: .15s !important;
+  box-shadow: 0 6px 18px rgba(32,58,94,.22) !important;
+  height: auto !important;
+}
+.auth-page .btn-primary:hover {
+  background: linear-gradient(135deg, #245380, #2a5080);
+  transform: translateY(-1px);
+}
+.auth-links {
+  font-size: 14px;
+  color: #6b7f94;
+  text-align: center;
+  margin: 14px 0 0;
+}
+.auth-links.subtle { font-size: 13px; opacity: .85; }
+.auth-links a, .auth-links .font-bold {
+  color: #203a5e;
+  font-weight: 650;
+  text-decoration: none;
+}
+.auth-links a:hover { text-decoration: underline; }
+.auth-page .external-auth { margin-top: 14px; text-align: center; }
+
+/* Glass status panel */
+.live-panel {
+  width: 100%;
+  max-width: 460px;
+  background: rgba(255,255,255,.11);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.20);
+  border-radius: 22px;
+  padding: 28px;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 25px 60px rgba(0,0,0,.25);
+}
+.live-panel h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff !important;
+}
+.live-panel .sub {
+  color: #cfe0f8;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.svc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(34,197,94,.18);
+  color: #a7f3d0;
+  font-size: 12px;
+  font-weight: 650;
+  margin-bottom: 18px;
+  border: 1px solid rgba(34,197,94,.30);
+}
+.live-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34,197,94,.7);
+  animation: auth-pulse 1.8s infinite;
+}
+@keyframes auth-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(34,197,94,.6); }
+  70%  { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0   rgba(34,197,94,0); }
+}
+.svc-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.svc-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.svc-ico {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  background: rgba(34,197,94,.20);
+  color: #a7f3d0;
+  flex: 0 0 auto;
+}
+.svc-info { flex: 1; min-width: 0; }
+.svc-info .name { font-weight: 650; font-size: 14.5px; margin-bottom: 2px; color: #fff; }
+.svc-info .state { font-size: 12px; color: #a7f3d0; font-weight: 600; margin-bottom: 2px; }
+.svc-info .detail { font-size: 12px; color: #a7c4e6; }
+.live-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+.live-stat {
+  background: rgba(255,255,255,.08);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.live-stat .num { font-size: 22px; font-weight: 800; color: #fff; }
+.live-stat .lbl { font-size: 11px; color: #a7c4e6; text-transform: uppercase; letter-spacing: .8px; }
+.live-time { font-size: 11px; color: #8fb3d8; text-align: right; margin-top: 14px; }
+
+@media (max-width: 960px) {
+  #auth { grid-template-columns: 1fr; display: flex; flex-direction: column; }
+  #auth-left { padding: 32px 22px; border-right: 0; order: 1; }
+  #auth-right { display: none; }      /* mobile: panel redundant */
+}
+/* ============================================================
+   FIX: hide osTicket footer overlay spinners by default.
+   osTicket renders #loading + #popup-loading in footer.inc.php
+   and shows() them during async ops. If init JS errors before
+   it can run, they stay visible. Hide by CSS; osTicket calls
+   $.show() when it really needs them.
+   ============================================================ */
+#loading,
+#popup-loading {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+
+/* ============================================================
+   arahOS v2 contrast patch — tokens are dark-themed but the
+   portal shows on a light background. Force readable dark text.
+   ============================================================ */
+html:not([data-theme="dark"]) body:not(arahOS-dark) #landing_page p,
+html:not([data-theme="dark"]) body:not(arahOS-dark) .main-content p,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content p,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content li,
+html:not([data-theme="dark"]) body:not(arahOS-dark) .main-content li,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content td {
+  color: #1f2937 !important;
+}
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content,
+html:not([data-theme="dark"]) body:not(arahOS-dark) .main-content {
+  color: #1f2937 !important;
+}
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content a,
+html:not([data-theme="dark"]) body:not(arahOS-dark) .main-content a {
+  color: #163a70 !important;
+}
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content a:hover,
+html:not([data-theme="dark"]) body:not(arahOS-dark) .main-content a:hover {
+  color: #b9820a !important;
+}
+/* Sidebar / info card text */
+html:not([data-theme="dark"]) body:not(arahOS-dark) #landing_page .sidebar,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #landing_page .sidebar p,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #landing_page .sidebar li {
+  color: #1f2937 !important;
+}
+
+
+/* ============================================================
+   arahOS v3 patch — Client nav tab contrast + show osTicket credit
+   ============================================================ */
+
+/* Nav bar tabs: navy background needs LIGHT text (was dark/unreadable) */
+#nav li a,
+#nav.flush-left li a,
+ul#nav li a,
+#header #nav li a {
+  color: #eef1f5 !important;
+  background: transparent !important;
+  font-weight: 600 !important;
+}
+#nav li a:hover,
+#nav.flush-left li a:hover,
+ul#nav li a:hover {
+  background: rgba(242,169,0,.18) !important;
+  color: #ffffff !important;
+}
+/* Active tab stays gold pill with navy text */
+#nav li.active a,
+#nav li a.active,
+#nav.flush-left li.active a {
+  background: var(--arahOS-gold-500, #f2a900) !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+  font-weight: 700 !important;
+}
+
+/* Hide "powered by osTicket" attribution in footer */
+#footer #poweredBy,
+#poweredBy {
+  display: none !important;
+}
+
+
+/* ============================================================
+   arahOS v4 — Knowledgebase / FAQ readability
+   ============================================================ */
+html:not([data-theme="dark"]) body:not(arahOS-dark) #kb-container a,
+html:not([data-theme="dark"]) body:not(arahOS-dark) .kb-category a,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content .faq a,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content ul li a,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content .article a,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content a:visited {
+  color: #163a70 !important;
+}
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content a:visited { color: #163a70 !important; }
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content a:hover { color: #b9820a !important; }
+
+/* Category description + intro text darker */
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content .faded,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content .description,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content small,
+html:not([data-theme="dark"]) body:not(arahOS-dark) .kb-category .description {
+  color: #4b5563 !important;
+}
+
+/* FAQ article body text readable */
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content .thread-body,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content .article-content,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content .faq-content { color: #1f2937 !important; }
+
+/* ============================================================
+   Agent login callout on client Check-Ticket page
+   ============================================================ */
+.agent-login-note {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-top: 18px !important;
+  padding: 14px 18px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--arahOS-gray-200) !important;
+  border-left: 4px solid var(--arahOS-gold-500) !important;
+  border-radius: var(--arahOS-radius-md) !important;
+}
+.agent-login-note span {
+  color: var(--arahOS-gray-700) !important;
+  font-size: 0.95rem !important;
+}
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content a.agent-login-btn,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content .agent-login-btn,
+body #content a.agent-login-btn,
+.agent-login-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: var(--arahOS-navy-700) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  padding: 10px 18px !important;
+  border-radius: var(--arahOS-radius-md) !important;
+  border: 1px solid var(--arahOS-navy-700) !important;
+  transition: background 0.15s ease !important;
+}
+body #content a.agent-login-btn:visited,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content a.agent-login-btn:visited {
+  color: #ffffff !important;
+}
+.agent-login-btn:hover {
+  background: var(--arahOS-gold-500) !important;
+  color: var(--arahOS-navy-900) !important;
+  border-color: var(--arahOS-gold-500) !important;
+}
+
+/* ============================================================
+   arahOS PWA — Install banner + iOS help styles
+   ============================================================ */
+#arahOS-install-banner {
+  position: fixed !important;
+  bottom: 16px !important;
+  left: 16px !important;
+  right: 16px !important;
+  z-index: 1200 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: var(--arahOS-navy-900, #0a1f44) !important;
+  color: #ffffff !important;
+  padding: 12px 16px !important;
+  border-radius: 14px !important;
+  border-top: 3px solid var(--arahOS-gold-500, #f2a900) !important;
+  box-shadow: 0 10px 30px rgba(10, 31, 68, 0.45) !important;
+  max-width: 480px !important;
+  margin: 0 auto !important;
+  font-family: var(--arahOS-font-base, -apple-system, "Segoe UI", Roboto, sans-serif) !important;
+}
+#arahOS-install-banner .vib-icon {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 10px !important;
+  flex-shrink: 0 !important;
+}
+#arahOS-install-banner .vib-text {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+}
+#arahOS-install-banner .vib-text strong { font-size: 0.95rem !important; }
+#arahOS-install-banner .vib-text span {
+  font-size: 0.8rem !important;
+  color: #c3c9d1 !important;
+  line-height: 1.25 !important;
+}
+#arahOS-install-banner .vib-install {
+  background: var(--arahOS-gold-500, #f2a900) !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+  font-weight: 700 !important;
+  border: none !important;
+  padding: 9px 16px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  font-size: 0.88rem !important;
+  flex-shrink: 0 !important;
+}
+#arahOS-install-banner .vib-close {
+  background: transparent !important;
+  border: none !important;
+  color: #c3c9d1 !important;
+  font-size: 1.4rem !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  padding: 4px 8px !important;
+  flex-shrink: 0 !important;
+}
+#arahOS-install-banner .vib-close:hover { color: #ffffff !important; }
+
+@media (max-width: 480px) {
+  #arahOS-install-banner { left: 8px !important; right: 8px !important; bottom: 8px !important; padding: 10px 12px !important; }
+  #arahOS-install-banner .vib-text span { display: none !important; }
+}
+
+/* iOS install help modal */
+arahOS-ios-help {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1300 !important;
+  background: rgba(10, 31, 68, 0.72) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+}
+arahOS-ios-card {
+  background: #ffffff !important;
+  color: var(--arahOS-gray-900, #111827) !important;
+  border-radius: 14px !important;
+  border-top: 4px solid var(--arahOS-gold-500, #f2a900) !important;
+  max-width: 360px !important;
+  width: 100% !important;
+  padding: 24px !important;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4) !important;
+}
+arahOS-ios-card h3 { margin: 0 0 12px !important; color: var(--arahOS-navy-900, #0a1f44) !important; }
+arahOS-ios-card ol { margin: 0 0 18px 18px !important; color: var(--arahOS-gray-700, #374151) !important; line-height: 1.6 !important; }
+arahOS-ios-card .ios-share { display: inline-block; background: #eef1f5; padding: 0 6px; border-radius: 4px; }
+arahOS-ios-card .vib-install {
+  width: 100% !important;
+  background: var(--arahOS-navy-700, #163a70) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border: none !important;
+  padding: 12px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-size: 0.95rem !important;
+}
+
+/* ============================================================
+   arahOS — Landing page hero + Front Page FAQ accordion
+   ============================================================ */
+
+/* Hero banner */
+arahOS-hero {
+  background: linear-gradient(135deg, var(--arahOS-navy-900, #0a1f44) 0%, var(--arahOS-navy-700, #163a70) 100%) !important;
+  border-bottom: 3px solid var(--arahOS-gold-500, #f2a900) !important;
+  padding: 48px 24px 40px !important;
+  margin: 0 0 32px 0 !important;
+}
+arahOS-hero-inner { max-width: 760px !important; margin: 0 auto !important; text-align: center !important; }
+arahOS-hero-title {
+  color: #ffffff !important;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 10px !important;
+  line-height: 1.2 !important;
+}
+arahOS-hero-sub {
+  color: #c3c9d1 !important;
+  font-size: 1.05rem !important;
+  margin: 0 0 26px !important;
+  line-height: 1.5 !important;
+}
+arahOS-hero-search {
+  display: flex !important;
+  max-width: 560px !important;
+  margin: 0 auto 20px !important;
+  background: #ffffff !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22) !important;
+}
+arahOS-hero-input {
+  flex: 1 !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 14px 20px !important;
+  font-size: 1rem !important;
+  color: var(--arahOS-gray-900, #111827) !important;
+  min-width: 0 !important;
+}
+arahOS-hero-input:focus { outline: none !important; }
+arahOS-hero-btn {
+  background: var(--arahOS-gold-500, #f2a900) !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+  font-weight: 700 !important;
+  border: none !important;
+  padding: 14px 28px !important;
+  cursor: pointer !important;
+  font-size: 1rem !important;
+  flex-shrink: 0 !important;
+  border-radius: 0 !important;
+}
+arahOS-hero-btn:hover { background: var(--arahOS-gold-600, #d69400) !important; }
+
+/* Hero action buttons */
+arahOS-hero-actions { display: flex !important; gap: 12px !important; justify-content: center !important; flex-wrap: wrap !important; }
+arahOS-cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  padding: 12px 24px !important;
+  border-radius: 999px !important;
+  transition: all 0.15s ease !important;
+  border: 2px solid transparent !important;
+}
+arahOS-cta-gold {
+  background: var(--arahOS-gold-500, #f2a900) !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+}
+arahOS-cta-gold:hover { background: var(--arahOS-gold-600, #d69400) !important; }
+arahOS-cta-outline {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.5) !important;
+}
+arahOS-cta-outline:hover { border-color: #ffffff !important; background: rgba(255,255,255,0.1) !important; }
+
+/* Landing content grid (main + aside) */
+arahOS-content-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 340px !important;
+  gap: 28px !important;
+  align-items: start !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+}
+arahOS-content-main { min-width: 0 !important; }
+arahOS-content-aside { min-width: 0 !important; }
+@media (max-width: 900px) {
+  arahOS-content-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Formatted intro text */
+arahOS-intro { max-width: 720px !important; }
+arahOS-intro h1, arahOS-intro h2 {
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+  font-size: 1.5rem !important;
+  margin: 0 0 14px !important;
+}
+arahOS-intro p {
+  color: var(--arahOS-gray-700, #374151) !important;
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+  margin: 0 0 14px !important;
+}
+arahOS-intro a { color: var(--arahOS-navy-600, #1e4c8f) !important; font-weight: 600 !important; }
+arahOS-intro a:hover { color: var(--arahOS-gold-600, #d69400) !important; }
+arahOS-intro strong { color: var(--arahOS-navy-900, #0a1f44) !important; }
+
+/* Front Page FAQ accordion */
+arahOS-frontpage {
+  max-width: 860px !important;
+  margin: 40px auto 32px !important;
+  padding: 0 24px !important;
+}
+arahOS-frontpage-head { text-align: center !important; margin-bottom: 20px !important; }
+arahOS-frontpage-head h2 {
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+  font-size: 1.5rem !important;
+  margin: 0 0 6px !important;
+}
+arahOS-frontpage-head p { color: var(--arahOS-gray-500, #6b7280) !important; font-size: 0.95rem !important; margin: 0 !important; }
+
+arahOS-accordion {
+  background: #ffffff !important;
+  border: 1px solid var(--arahOS-gray-200, #e5e7eb) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05) !important;
+}
+arahOS-acc-item { border-bottom: 1px solid var(--arahOS-gray-100, #eef1f5) !important; }
+arahOS-acc-item:last-child { border-bottom: none !important; }
+arahOS-acc-toggle {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  background: #ffffff !important;
+  border: none !important;
+  text-align: left !important;
+  padding: 16px 20px !important;
+  cursor: pointer !important;
+  transition: background 0.12s ease !important;
+}
+arahOS-acc-toggle:hover { background: var(--arahOS-gray-50, #f7f8fa) !important; }
+arahOS-acc-q {
+  color: var(--arahOS-navy-800, #102a56) !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  flex: 1 !important;
+}
+arahOS-acc-chevron {
+  color: var(--arahOS-gold-600, #d69400) !important;
+  font-size: 1rem !important;
+  transition: transform 0.18s ease !important;
+  flex-shrink: 0 !important;
+}
+arahOS-acc-item.open arahOS-acc-chevron { transform: rotate(180deg) !important; }
+arahOS-acc-item.open arahOS-acc-toggle { background: var(--arahOS-gray-50, #f7f8fa) !important; }
+arahOS-acc-body {
+  padding: 0 20px 18px !important;
+  border-top: 1px dashed var(--arahOS-gray-200, #e5e7eb) !important;
+}
+arahOS-acc-answer {
+  padding: 16px 0 10px !important;
+  color: var(--arahOS-gray-700, #374151) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.65 !important;
+}
+arahOS-acc-answer p { margin: 0 0 10px !important; }
+arahOS-acc-link {
+  display: inline-flex !important;
+  color: var(--arahOS-navy-600, #1e4c8f) !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  text-decoration: none !important;
+}
+arahOS-acc-link:hover { color: var(--arahOS-gold-600, #d69400) !important; text-decoration: underline !important; }
+
+/* Dark mode variants */
+[data-theme="dark"] arahOS-accordion,
+bodyarahOS-dark arahOS-accordion { background: #1b202a !important; border-color: #293142 !important; }
+[data-theme="dark"] arahOS-acc-toggle,
+bodyarahOS-dark arahOS-acc-toggle { background: #1b202a !important; }
+[data-theme="dark"] arahOS-acc-toggle:hover,
+bodyarahOS-dark arahOS-acc-toggle:hover { background: #293142 !important; }
+[data-theme="dark"] arahOS-acc-q,
+bodyarahOS-dark arahOS-acc-q { color: #eef0f3 !important; }
+[data-theme="dark"] arahOS-acc-answer,
+bodyarahOS-dark arahOS-acc-answer { color: #c3c9d1 !important; }
+[data-theme="dark"] arahOS-acc-body,
+bodyarahOS-dark arahOS-acc-body { border-top-color: #293142 !important; }
+
+/* ============================================================
+   arahOS — Hero contrast fix (subtitle + outline CTA on navy)
+   ============================================================ */
+arahOS-hero arahOS-hero-sub,
+html:not([data-theme="dark"]) arahOS-hero arahOS-hero-sub,
+body:not(arahOS-dark) arahOS-hero arahOS-hero-sub {
+  color: #d6dde8 !important;
+}
+
+arahOS-hero arahOS-cta-outline,
+html:not([data-theme="dark"]) arahOS-hero arahOS-cta-outline,
+body:not(arahOS-dark) arahOS-hero arahOS-cta-outline {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.55) !important;
+}
+arahOS-hero arahOS-cta-outline:hover,
+html:not([data-theme="dark"]) arahOS-hero arahOS-cta-outline:hover,
+body:not(arahOS-dark) arahOS-hero arahOS-cta-outline:hover {
+  background: rgba(255,255,255,0.12) !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+/* Keep the gold CTA readable too */
+arahOS-hero arahOS-cta-gold {
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+}
+
+/* ============================================================
+   arahOS — Landing 3-column layout
+   Left: buttons + system status | Center: intro | Right: FAQ
+   ============================================================ */
+arahOS-layout {
+  display: grid !important;
+  grid-template-columns: 300px 1fr 320px !important;
+  gap: 28px !important;
+  align-items: start !important;
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+}
+arahOS-col-left, arahOS-col-main, arahOS-col-right { min-width: 0 !important; }
+
+/* Left column buttons */
+arahOS-left-buttons { display: flex !important; flex-direction: column !important; gap: 12px !important; margin-bottom: 20px !important; }
+arahOS-side-btn {
+  display: block !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  padding: 14px 20px !important;
+  border-radius: 8px !important;
+  transition: all 0.15s ease !important;
+}
+arahOS-side-btn-gold {
+  background: var(--arahOS-gold-500, #f2a900) !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+}
+arahOS-side-btn-gold:hover { background: var(--arahOS-gold-600, #d69400) !important; }
+arahOS-side-btn-gold2 {
+  background: var(--arahOS-gold-500, #f2a900) !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+}
+arahOS-side-btn-gold2:hover { background: var(--arahOS-gold-600, #d69400) !important; }
+
+/* Right sidebar FAQ (compact variant) */
+arahOS-frontpage-side { margin: 0 !important; padding: 0 !important; max-width: none !important; }
+arahOS-frontpage-side arahOS-frontpage-head { text-align: left !important; margin-bottom: 14px !important; }
+arahOS-frontpage-side arahOS-frontpage-head h2 { font-size: 1.2rem !important; }
+arahOS-frontpage-side arahOS-frontpage-head p { font-size: 0.85rem !important; }
+arahOS-frontpage-side arahOS-acc-q { font-size: 0.92rem !important; }
+arahOS-frontpage-side arahOS-acc-toggle { padding: 13px 16px !important; }
+arahOS-frontpage-side arahOS-acc-answer { font-size: 0.88rem !important; }
+
+/* Responsive stacking */
+@media (max-width: 1100px) {
+  arahOS-layout { grid-template-columns: 260px 1fr !important; }
+  arahOS-col-right { grid-column: 1 / -1 !important; }
+}
+@media (max-width: 760px) {
+  arahOS-layout { grid-template-columns: 1fr !important; }
+  arahOS-left-buttons { flex-direction: column !important; }
+}
+
+/* ============================================================
+   arahOS — Hero text must be light on navy (beat #content p rule)
+   ============================================================ */
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content arahOS-hero arahOS-hero-sub,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #landing_page arahOS-hero arahOS-hero-sub,
+body #content arahOS-hero parahOS-hero-sub {
+  color: #d6dde8 !important;
+}
+
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content arahOS-hero aarahOS-cta-outline,
+html:not([data-theme="dark"]) body:not(arahOS-dark) #landing_page arahOS-hero aarahOS-cta-outline,
+body #content arahOS-hero aarahOS-cta-outline {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.55) !important;
+}
+html:not([data-theme="dark"]) body:not(arahOS-dark) #content arahOS-hero aarahOS-cta-outline:hover,
+body #content arahOS-hero aarahOS-cta-outline:hover {
+  background: rgba(255,255,255,0.12) !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+/* gold CTA stays navy text */
+body #content arahOS-hero aarahOS-cta-gold { color: #0a1f44 !important; }
+
+/* ============================================================
+   arahOS — Unified header: logo left, nav + user menu right
+   ============================================================ */
+#header {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  gap: 16px !important;
+  padding: 0 24px !important;
+  min-height: 64px !important;
+}
+arahOS-header-logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+  text-decoration: none !important;
+  order: 0 !important;
+  float: none !important;
+}
+arahOS-header-logo img,
+arahOS-header-logo img#logo {
+  display: block !important;
+  height: 52px !important;
+  width: auto !important;
+  max-width: 260px !important;
+  object-fit: contain !important;
+}
+
+/* Right side: nav + user grouped */
+arahOS-header-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  margin-left: auto !important;
+  order: 1 !important;
+  flex-wrap: nowrap !important;
+}
+
+/* Nav menu inline on the right */
+arahOS-header-nav,
+ul#navarahOS-header-nav {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 4px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+  position: static !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+arahOS-header-nav li { margin: 0 !important; width: auto !important; }
+arahOS-header-nav li a {
+  display: block !important;
+  padding: 10px 14px !important;
+  color: #eef1f5 !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  border-radius: 6px !important;
+  white-space: nowrap !important;
+  transition: background 0.12s ease, color 0.12s ease !important;
+}
+arahOS-header-nav li a:hover {
+  background: var(--arahOS-navy-600, #1e4c8f) !important;
+  color: var(--arahOS-gold-100, #fdf1d6) !important;
+}
+arahOS-header-nav li a.active {
+  background: var(--arahOS-gold-500, #f2a900) !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+}
+
+/* User menu (Guest/Sign In) on the far right */
+arahOS-header-user {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 0.85rem !important;
+  color: #ffffff !important;
+  white-space: nowrap !important;
+}
+arahOS-header-user arahOS-guest { color: #c3c9d1 !important; }
+arahOS-header-user arahOS-sep { color: rgba(255,255,255,0.4) !important; }
+arahOS-header-user a {
+  color: var(--arahOS-gold-500, #f2a900) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+arahOS-header-user a:hover { color: #ffffff !important; text-decoration: underline !important; }
+arahOS-header-user .flag { margin-left: 6px !important; }
+
+/* Mobile: hide inline nav behind hamburger (JS toggles arahOS-nav-open) */
+@media (max-width: 900px) {
+  arahOS-header-right { gap: 10px !important; }
+  arahOS-header-nav,
+  ul#navarahOS-header-nav {
+    display: none !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    position: absolute !important;
+    top: 64px !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: var(--arahOS-navy-800, #102a56) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+    padding: 6px 0 !important;
+    z-index: 999 !important;
+  }
+  arahOS-header-navarahOS-nav-open { display: flex !important; }
+  arahOS-header-nav li a { padding: 14px 24px !important; border-radius: 0 !important; }
+  arahOS-header-logo img, arahOS-header-logo img#logo { height: 44px !important; max-width: 200px !important; }
+}
+
+/* ============================================================
+   arahOS — Full-width hero (edge-to-edge, break out of padding)
+   ============================================================ */
+#landing_page arahOS-hero,
+#content arahOS-hero {
+  margin-left: calc(-48px - 7px) !important;
+  margin-right: calc(-48px - 7px) !important;
+  margin-top: -32px !important;
+  width: calc(100% + 96px + 14px) !important;
+  padding-left: 48px !important;
+  padding-right: 48px !important;
+  box-sizing: border-box !important;
+}
+arahOS-hero-inner { margin: 0 auto !important; }
+
+@media (max-width: 768px) {
+  #landing_page arahOS-hero,
+  #content arahOS-hero {
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    width: calc(100% + 32px) !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* ============================================================
+   arahOS — Gold header (brand statement) + new banner logo
+   ============================================================ */
+#header {
+  background: linear-gradient(180deg, #f7b32b 0%, var(--arahOS-gold-500, #f2a900) 100%) !important;
+  border-bottom: none !important;
+}
+
+/* Logo sits directly on gold — no white card needed */
+arahOS-header-logo {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+arahOS-header-logo img,
+arahOS-header-logo img#logo {
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Nav menu on gold → navy text */
+arahOS-header-nav li a,
+ul#navarahOS-header-nav li a,
+#header ul#nav li a {
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+  font-weight: 700 !important;
+}
+arahOS-header-nav li a:hover,
+ul#navarahOS-header-nav li a:hover,
+#header ul#nav li a:hover {
+  background: rgba(10, 31, 68, 0.12) !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+}
+arahOS-header-nav li a.active,
+ul#navarahOS-header-nav li a.active,
+#header ul#nav li a.active {
+  background: var(--arahOS-navy-900, #0a1f44) !important;
+  color: var(--arahOS-gold-500, #f2a900) !important;
+}
+
+/* User menu (Guest User | Sign In) on gold → navy */
+arahOS-header-user,
+#header arahOS-header-user,
+#header .pull-right {
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+}
+arahOS-header-user arahOS-guest,
+#header arahOS-guest { color: var(--arahOS-navy-800, #102a56) !important; }
+arahOS-header-user arahOS-sep { color: rgba(10, 31, 68, 0.4) !important; }
+arahOS-header-user a,
+#header arahOS-header-user a {
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+  font-weight: 700 !important;
+}
+arahOS-header-user a:hover,
+#header arahOS-header-user a:hover {
+  color: var(--arahOS-navy-600, #1e4c8f) !important;
+  text-decoration: underline !important;
+}
+
+/* Dark-mode + theme toggle buttons on gold */
+#header arahOS-theme-toggle,
+#header arahOS-nav-toggle {
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+  background: rgba(10, 31, 68, 0.08) !important;
+}
+#header arahOS-theme-toggle:hover,
+#header arahOS-nav-toggle:hover {
+  background: rgba(10, 31, 68, 0.16) !important;
+}
+
+/* Mobile dropdown nav keeps navy bg for readability */
+@media (max-width: 900px) {
+  arahOS-header-nav, ul#navarahOS-header-nav {
+    background: var(--arahOS-navy-800, #102a56) !important;
+  }
+  arahOS-header-nav li a, ul#navarahOS-header-nav li a { color: #eef1f5 !important; }
+  arahOS-header-nav li a.active, ul#navarahOS-header-nav li a.active {
+    background: var(--arahOS-gold-500, #f2a900) !important;
+    color: var(--arahOS-navy-900, #0a1f44) !important;
+  }
+}

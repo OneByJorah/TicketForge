@@ -1,0 +1,100 @@
+/* ============================================================
+   arahOS Help Desk — Design Tokens (LIGHT theme, corrected)
+   Shared CSS variables for the client portal + staff panel.
+   Edit THIS file to update brand colors everywhere at once.
+   ============================================================ */
+
+:root {
+  /* --- arahOS Brand Palette --- */
+  --arahOS-navy-900:   #0a1f44;   /* primary header / nav */
+  --arahOS-navy-800:   #102a56;
+  --arahOS-navy-700:   #163a70;
+  --arahOS-navy-600:   #1e4c8f;
+  --arahOS-gold-500:   #f2a900;   /* primary accent */
+  --arahOS-gold-600:   #d69400;
+  --arahOS-gold-100:   #fdf1d6;
+
+  /* --- Neutrals (LIGHT theme: 50 = lightest bg, 900 = darkest text) --- */
+  --arahOS-white:      #ffffff;
+  --arahOS-gray-50:    #f7f8fa;   /* page background */
+  --arahOS-gray-100:   #eef1f5;   /* card / subtle bg */
+  --arahOS-gray-200:   #e5e7eb;   /* borders */
+  --arahOS-gray-300:   #d1d5db;   /* input borders */
+  --arahOS-gray-500:   #6b7280;   /* muted text */
+  --arahOS-gray-700:   #374151;   /* secondary text */
+  --arahOS-gray-900:   #111827;   /* primary text */
+
+  /* --- Status colors --- */
+  --arahOS-status-open:     #1e8e5a;
+  --arahOS-status-overdue:  #d64545;
+  --arahOS-status-pending:  #d69400;
+  --arahOS-status-closed:   #6b7280;
+
+  /* --- Typography --- */
+  --arahOS-font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                     Helvetica, Arial, sans-serif;
+  --arahOS-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  /* --- Layout --- */
+  --arahOS-radius-sm: 4px;
+  --arahOS-radius-md: 8px;
+  --arahOS-radius-lg: 14px;
+  --arahOS-shadow-sm: 0 1px 2px rgba(10, 31, 68, 0.08);
+  --arahOS-shadow-md: 0 4px 14px rgba(10, 31, 68, 0.12);
+  --arahOS-shadow-lg: 0 10px 30px rgba(10, 31, 68, 0.18);
+  --arahOS-header-height: 64px;
+  --arahOS-header-height-mobile: 56px;
+
+  /* --- Focus ring (accessibility) --- */
+  --arahOS-focus-ring: 0 0 0 3px rgba(242, 169, 0, 0.5);
+
+  /* --- Spacing scale --- */
+  --arahOS-space-1: 4px;
+  --arahOS-space-2: 8px;
+  --arahOS-space-3: 12px;
+  --arahOS-space-4: 16px;
+  --arahOS-space-5: 24px;
+  --arahOS-space-6: 32px;
+
+  /* --- Motion --- */
+  --arahOS-transition-fast: 120ms ease;
+  --arahOS-transition-base: 200ms ease;
+
+  /* --- Touch target minimum (WCAG 2.5.5 / iOS HIG) --- */
+  --arahOS-touch-target: 44px;
+
+  /* --- z-index scale --- */
+  --arahOS-z-nav: 900;
+  --arahOS-z-overlay: 950;
+  --arahOS-z-modal: 1000;
+  --arahOS-z-toast: 1100;
+}
+
+/* ============================================================
+   DARK MODE — opt-in ONLY via explicit toggle class/attribute.
+   We do NOT auto-apply via prefers-color-scheme, because the
+   portal markup uses a light background; auto dark tokens caused
+   light-on-white unreadable text. Dark mode here flips BOTH the
+   surfaces and the text together so contrast stays correct.
+   ============================================================ */
+[data-theme="dark"],
+bodyarahOS-dark {
+  --arahOS-white:      #1b202a;
+  --arahOS-gray-50:    #14181f;
+  --arahOS-gray-100:   #1b202a;
+  --arahOS-gray-200:   #293142;
+  --arahOS-gray-300:   #3a4557;
+  --arahOS-gray-500:   #9aa4b2;
+  --arahOS-gray-700:   #c3c9d1;
+  --arahOS-gray-900:   #eef0f3;
+}
+
+/* --- Respect reduced-motion preference --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

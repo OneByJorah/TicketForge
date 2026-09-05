@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helpdesk Theme Preview</title>
+<!-- These are the SAME files you deploy to css/helpdesk/ on the server.
+     If you edit ../css/helpdesk-tokens.css etc, this preview updates too. -->
+<link rel="stylesheet" href="../theme/css/helpdesk-tokens.css">
+<link rel="stylesheet" href="../theme/css/helpdesk-client-portal.css">
+<style>
+  /* preview-only chrome, not part of the deployed theme */
+  body { margin:0; }
+  .preview-bar {
+    background:#1a1d23; color:#fff; display:flex; align-items:center; gap:8px;
+    padding:10px 16px; font-size:.85rem; position:sticky; top:0; z-index:999;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  .preview-bar b { color:#f2a900; margin-right:8px;}
+  .preview-bar button {
+    background:transparent; border:1px solid #6b7280; color:#fff; border-radius:6px;
+    padding:6px 14px; cursor:pointer; font-size:.85rem;
+  }
+  .preview-bar button.active { background:#f2a900; color:#0a1f44; border-color:#f2a900; font-weight:700; }
+  .view { display:none; }
+  .view.active { display:block; }
+  #staff-frame { width:100%; height:calc(100vh - 46px); border:none; display:none; }
+  #staff-frame.active { display:block; }
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <b>Helpdesk Theme Preview</b>
+  <button id="btn-client" class="active" onclick="showView('client')">Client Portal</button>
+  <button id="btn-staff" onclick="showView('staff')">Staff Panel</button>
+</div>
+
+<!-- ================= CLIENT PORTAL (uses real helpdesk-client-portal.css classes) ================= -->
+<div id="client" class="view active">
+  <div id="header" class="header">
+    <img class="logo" src="../theme/assets/helpdesk-logo-placeholder.svg" alt="Helpdesk logo">
+    <h1>Help Desk</h1>
+  </div>
+  <ul id="nav" class="nav">
+    <li class="active"><a href="#">Open a Ticket</a></li>
+    <li><a href="#">Check Ticket Status</a></li>
+    <li><a href="#">Knowledgebase</a></li>
+  </ul>
+
+  <div class="container" style="max-width:760px;margin:28px auto;">
+    <h2>Open a New Ticket</h2>
+    <p>Tell us what's going on and a technician from your district will follow up.</p>
+
+    <form onsubmit="return false;">
+      <fieldset>
+        <label>Full Name</label>
+        <input type="text" placeholder="Jane Rodriguez">
+
+        <label>Email Address</label>
+        <input type="email" placeholder="jane.rodriguez@example.com">
+
+        <label>District</label>
+        <select>
+          <option>St. Thomas – St. John</option>
+          <option>St. Croix</option>
+        </select>
+
+        <label>School / Site</label>
+        <select>
+          <option>Charlotte Amalie High School</option>
+          <option>Ivanna Eudora Kean High School</option>
+          <option>St. Croix Educational Complex</option>
+          <option>Other / Central Office</option>
+        </select>
+
+        <label>What do you need help with?</label>
+        <select>
+          <option>Password Reset / Account Lockout</option>
+          <option>Computer / Device Not Working</option>
+          <option>Network / Internet Down</option>
+          <option>Phone Issue</option>
+          <option>PowerSchool / Software Access</option>
+          <option>Classroom Technology</option>
+          <option>Other / General IT</option>
+        </select>
+
+        <label>Describe the issue</label>
+        <textarea rows="5" placeholder="What happened, when it started, and anything you've already tried..."></textarea>
+      </fieldset>
+
+      <button class="btn orange" type="submit">Submit Ticket</button>
+    </form>
+
+    <h3 style="margin-top:36px;">Recent Ticket Status</h3>
+    <table class="list">
+      <thead><tr><th>#</th><th>Subject</th><th>Status</th><th>Updated</th></tr></thead>
+      <tbody>
+        <tr><td data-label="#">#10481</td><td data-label="Subject">Password reset — locked out</td><td data-label="Status"><span class="status open">Open</span></td><td data-label="Updated">25m ago</td></tr>
+        <tr><td data-label="#">#10470</td><td data-label="Subject">Wifi down — east wing</td><td data-label="Status"><span class="status closed">Closed</span></td><td data-label="Updated">2d ago</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="footer" class="footer">
+    OneByJorah Help Desk &nbsp;|&nbsp; <a href="#">Check ticket status</a>
+  </div>
+</div>
+
+<!-- ================= STAFF PANEL (separate stylesheet, isolated in an iframe so
+     helpdesk-staff-panel.css / helpdesk-client-portal.css never collide with each other,
+     exactly like they never load on the same page in real osTicket) ================= -->
+<iframe id="staff-frame" src="staff-preview.html"></iframe>
+
+<script src="../theme/js/helpdesk-client-portal.js"></script>
+<script>
+function showView(v){
+  document.getElementById('client').classList.toggle('active', v==='client');
+  document.getElementById('staff-frame').classList.toggle('active', v==='staff');
+  document.getElementById('btn-client').classList.toggle('active', v==='client');
+  document.getElementById('btn-staff').classList.toggle('active', v==='staff');
+}
+</script>
+</body>
+</html>

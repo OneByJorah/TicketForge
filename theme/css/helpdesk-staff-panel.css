@@ -1,0 +1,200 @@
+/* ============================================================
+   Help Desk Theme — Staff/Agent Panel Theme
+   Target: osTicket 1.18.x staff control panel (/scp)
+
+   IMPORTANT: osTicket's SCP layout is JS-dependent (drag-resize
+   panels, AJAX ticket threads, keyboard shortcuts). This file is
+   intentionally a *visual* restyle only — colors, spacing, type,
+   and safe mobile breakpoints — and does not touch layout classes
+   that osTicket's JS measures/manipulates (e.g. #content, .flex-box
+   width/height calculations). Load AFTER scp/css/scp.css.
+   ============================================================ */
+
+@import url("helpdesk-tokens.css");
+
+body {
+  font-family: var(--helpdesk-font-base) !important;
+  transition: background var(--helpdesk-transition-base), color var(--helpdesk-transition-base);
+}
+
+/* Fluid type — same approach as client portal */
+body, input, textarea, select, button { font-size: clamp(0.85rem, 0.82rem + 0.15vw, 0.92rem); }
+
+#staff-header, #header, .staff-header {
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+/* --- Dark mode toggle (agents doing overnight NOC shifts will want this) --- */
+.helpdesk-theme-toggle {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  border-radius: 999px;
+  width: 32px; height: 32px;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.helpdesk-theme-toggle:hover { background: rgba(255,255,255,0.1); }
+
+/* --- Mobile sidebar hamburger toggle --- */
+.helpdesk-sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 8px 10px;
+  min-width: var(--helpdesk-touch-target);
+  min-height: var(--helpdesk-touch-target);
+}
+
+/* ---------- Top bar ---------- */
+#staff-header, #header, .staff-header {
+  background: var(--helpdesk-navy-900) !important;
+  border-bottom: 3px solid var(--helpdesk-gold-500);
+  color: var(--helpdesk-white) !important;
+}
+#staff-header a, .staff-header a { color: var(--helpdesk-white) !important; }
+#staff-header .logo, img.logo { max-height: 36px; }
+
+/* ---------- Top-level nav tabs (Tickets / Knowledgebase / etc) ---------- */
+#nav.tabs, ul.tabs {
+  background: var(--helpdesk-navy-800) !important;
+}
+#nav.tabs li a, ul.tabs li a {
+  color: var(--helpdesk-gray-100) !important;
+  font-weight: 500;
+}
+#nav.tabs li.active a, ul.tabs li.active a,
+#nav.tabs li a:hover, ul.tabs li a:hover {
+  background: var(--helpdesk-gold-500) !important;
+  color: var(--helpdesk-navy-900) !important;
+  font-weight: 700 !important;
+}
+
+/* ---------- Sub-nav / sidebar ---------- */
+#sidebar, .sidebar, ul.sub-nav {
+  background: var(--helpdesk-gray-50) !important;
+  border-right: 1px solid var(--helpdesk-gray-200);
+}
+.sidebar a, ul.sub-nav a { color: var(--helpdesk-navy-700) !important; }
+.sidebar a:hover, ul.sub-nav a:hover { color: var(--helpdesk-gold-600) !important; }
+.sidebar li.active a, ul.sub-nav li.active a {
+  border-left: 3px solid var(--helpdesk-gold-500);
+  background: var(--helpdesk-gold-100) !important;
+  font-weight: 700;
+}
+
+/* ---------- Buttons ---------- */
+.btn, input[type="submit"], button.btn {
+  background: var(--helpdesk-navy-700) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--helpdesk-radius-sm) !important;
+  font-weight: 600 !important;
+}
+.btn:hover, input[type="submit"]:hover { background: var(--helpdesk-navy-600) !important; }
+.btn.green, .btn.blue, .btn.orange { background: var(--helpdesk-gold-500) !important; color: var(--helpdesk-navy-900) !important; }
+.btn.red { background: var(--helpdesk-status-overdue) !important; color: #fff !important; }
+
+/* ---------- Ticket queue table ---------- */
+table.list th {
+  background: var(--helpdesk-navy-900) !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+table.list tr:hover td { background: var(--helpdesk-gray-50) !important; }
+tr.overdue td, .Row.overdue td   { background: rgba(214, 69, 69, 0.06) !important; }
+tr.answered td                    { background: rgba(30, 142, 90, 0.06) !important; }
+
+/* ---------- Status pills ---------- */
+.Ticket-status, .label {
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  font-size: .72rem !important;
+}
+
+/* ---------- Ticket thread panel ---------- */
+.thread-entry, .thread-message {
+  border-radius: var(--helpdesk-radius-md);
+  border: 1px solid var(--helpdesk-gray-200) !important;
+}
+.thread-entry .header, .thread-message .header {
+  background: var(--helpdesk-gray-50) !important;
+}
+.thread-entry.staff-entry .header, .staff-entry .header {
+  border-left: 3px solid var(--helpdesk-gold-500);
+}
+.thread-entry.message .header, .thread-entry.client .header {
+  border-left: 3px solid var(--helpdesk-navy-600);
+}
+
+/* ---------- Focus visibility (accessibility) ---------- */
+a:focus, .btn:focus, input:focus, textarea:focus, select:focus {
+  outline: none !important;
+  box-shadow: var(--helpdesk-focus-ring) !important;
+}
+
+/* ============================================================
+   MOBILE / TABLET — safe, additive tweaks only
+   (osTicket SCP is not designed for phones; this makes it usable
+   on a tablet or in a pinch on a phone, not a full redesign.)
+   ============================================================ */
+@media (max-width: 1024px) {
+  #sidebar, .sidebar { width: 200px !important; }
+}
+
+@media (max-width: 768px) {
+  .helpdesk-sidebar-toggle { display: inline-flex; align-items: center; justify-content: center; }
+
+  #sidebar, .sidebar {
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    width: 260px !important;
+    max-width: 80vw;
+    transform: translateX(-100%);
+    transition: transform var(--helpdesk-transition-base);
+    z-index: var(--helpdesk-z-overlay);
+    box-shadow: var(--helpdesk-shadow-lg);
+    overflow-y: auto;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  #sidebar.helpdesk-sidebar-open, .sidebar.helpdesk-sidebar-open {
+    transform: translateX(0);
+  }
+  .helpdesk-sidebar-backdrop {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(10,31,68,0.4);
+    z-index: var(--helpdesk-z-nav);
+  }
+  .helpdesk-sidebar-backdrop.helpdesk-sidebar-open { display: block; }
+
+  .sidebar a, ul.sub-nav a {
+    min-height: var(--helpdesk-touch-target);
+    display: flex !important;
+    align-items: center;
+  }
+
+  table.list th:nth-child(n+5),
+  table.list td:nth-child(n+5) {
+    display: none; /* hide lower-priority columns, keep subject/status/priority/date */
+  }
+  .btn, input[type="submit"] {
+    padding: 10px 14px !important;
+    min-height: var(--helpdesk-touch-target);
+  }
+}
+
+@media (max-width: 480px) {
+  table.list th:nth-child(n+4),
+  table.list td:nth-child(n+4) { display: none; } /* even tighter: subject + status only */
+}
+
+@media print {
+  #staff-header, #nav.tabs, .sidebar { display: none !important; }
+}

@@ -1,0 +1,162 @@
+/* ============================================================
+   arahOST Help Desk — CLIENT PORTAL theme
+   Realizes the arahOS-osticket-preview.html mockup inside osTicket's
+   actual DOM (badge header, district subtitle, navy navbar,
+   ticket card, gold CTA, navy footer).
+   ============================================================ */
+
+:root {
+  --arahOS-navy-900:#0a1f44;
+  --arahOS-navy-800:#102a56;
+  --arahOS-navy-700:#163a70;
+  --arahOS-navy-600:#1e4c8f;
+  --arahOS-gold-500:#f2a900;
+  --arahOS-gold-600:#d69400;
+  --arahOS-gold-100:#fdf1d6;
+  --arahOS-gray-50:#f7f8fa;
+  --arahOS-gray-100:#eef0f3;
+  --arahOS-gray-200:#dde1e7;
+  --arahOS-gray-300:#c3c9d1;
+  --arahOS-gray-500:#6b7280;
+  --arahOS-gray-700:#374151;
+  --arahOS-gray-900:#1a1d23;
+  --arahOS-shadow:0 4px 14px rgba(10,31,68,.12);
+  --arahOS-radius:14px;
+  --arahOS-focus:0 0 0 3px rgba(242,169,0,.5);
+}
+
+body { background:var(--arahOS-gray-50); color:var(--arahOS-gray-900); }
+#container { min-height:100vh; display:flex; flex-direction:column; }
+
+/* ---- arahOS client header ---- */
+#arahOS-client-header {
+  background: linear-gradient(180deg, var(--arahOS-navy-900), var(--arahOS-navy-800));
+  border-bottom: 3px solid var(--arahOS-gold-500);
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 14px;
+}
+.arahOS-badge {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: var(--arahOS-gold-500); color: var(--arahOS-navy-900);
+  font-weight: 800; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; text-decoration: none; flex: 0 0 auto;
+}
+.arahOS-brand { line-height: 1.2; }
+.arahOS-title { color:#fff; font-weight:700; font-size:1.1rem; }
+.arahOS-sub {
+  color: var(--arahOS-gray-300); font-size:.72rem;
+  letter-spacing:.04em; text-transform:uppercase;
+}
+.arahOS-usermenu {
+  margin-left:auto; color: var(--arahOS-gray-100);
+  font-size:.85rem; display:flex; align-items:center; gap:6px;
+}
+.arahOS-usermenu a, .arahOS-usermenu b { color: var(--arahOS-gold-500); text-decoration:none; }
+.arahOS-usermenu a:hover { text-decoration: underline; }
+
+/* ---- arahOS client navbar ---- */
+#arahOS-client-nav { background: var(--arahOS-navy-700); }
+#arahOS-client-nav #nav {
+  list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap;
+}
+#arahOS-client-nav #nav li { display:inline-block; }
+#arahOS-client-nav #nav li a {
+  color:#fff; text-decoration:none; font-weight:500; font-size:.9rem;
+  padding:12px 18px; display:inline-block;
+}
+#arahOS-client-nav #nav li a:hover:not(.active) { background: var(--arahOS-navy-600); }
+#arahOS-client-nav #nav li a.active,
+#arahOS-client-nav #nav li.active a {
+  background: var(--arahOS-gold-500); color: var(--arahOS-navy-900); font-weight:700;
+}
+
+/* ---- content / landing cards ---- */
+#content { flex:1 1 auto; padding: 24px 16px 0; }
+#content h1 { color: var(--arahOS-navy-900); }
+#content .page-title { color: var(--arahOS-navy-900); }
+
+/* ticket-open form card (the Open a Ticket page) */
+#content form, #content .form, #content .ticket-form, #content .thread-entry {
+  max-width: 760px; margin: 0 auto;
+  background:#fff; border:1px solid var(--arahOS-gray-200);
+  border-radius: var(--arahOS-radius); box-shadow: var(--arahOS-shadow);
+  padding: 28px;
+}
+#content h2 { color: var(--arahOS-navy-900); margin-top:0; }
+#content label, #content .field label, #content .form-header {
+  display:block; font-weight:600; color: var(--arahOS-gray-700);
+  margin:16px 0 6px; font-size:.88rem;
+}
+#content input[type=text], #content input[type=email], #content input[type=search],
+#content input[type=password], #content select, #content textarea {
+  width:100%; border:1px solid var(--arahOS-gray-300); border-radius:4px;
+  padding:11px 12px; font-size:.95rem; font-family:inherit; background:#fff;
+}
+#content input:focus, #content select:focus, #content textarea:focus {
+  outline:none; border-color: var(--arahOS-gold-500); box-shadow: var(--arahOS-focus);
+}
+#content .row2, #content .two-columns { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+/* ---- Buttons: primary CTA = gold ---- */
+#content .button.green, #content input[type=submit],
+#content button[type=submit], #content .btn {
+  margin-top:22px; background: var(--arahOS-gold-500); color: var(--arahOS-navy-900);
+  border:none; padding:12px 22px; border-radius:4px; font-weight:700;
+  font-size:.95rem; cursor:pointer;
+}
+#content .button.green:hover, #content input[type=submit]:hover,
+#content button[type=submit]:hover { background: var(--arahOS-gold-600); }
+#content .button, #content input[type=button] {
+  background: var(--arahOS-navy-700); color:#fff; border:1px solid var(--arahOS-navy-900);
+}
+#content .button:hover { background: var(--arahOS-navy-600); }
+
+/* ---- notice / error banners ---- */
+#content #msg_notice, #content .notice-banner {
+  background: var(--arahOS-gold-100); border-left:4px solid var(--arahOS-gold-500);
+  color: var(--arahOS-navy-900); padding:10px 14px; border-radius:4px;
+}
+#content #msg_error, #content .error-banner { border-left:4px solid #d64545; }
+#content #msg_warning, #content .warning-banner { border-left:4px solid var(--arahOS-gold-600); }
+
+/* ---- Knowledgebase / landing cards ---- */
+#content .featured-category.front-page {
+  border:1px solid var(--arahOS-gray-200); border-radius: var(--arahOS-radius);
+  box-shadow: var(--arahOS-shadow); background:#fff;
+}
+#content .search-form {
+  background: var(--arahOS-navy-800); border:1px solid var(--arahOS-navy-700);
+  border-radius:10px; padding:14px;
+}
+
+/* ---- arahOS client footer ---- */
+#arahOS-client-footer {
+  background: var(--arahOS-navy-900); color: var(--arahOS-gray-300);
+  text-align:center; padding:18px; font-size:.8rem; margin-top:28px;
+}
+#arahOS-client-footer a { color: var(--arahOS-gold-500); text-decoration:none; }
+
+@media (max-width:640px){
+  #arahOS-client-nav #nav { flex-wrap:wrap; }
+  #content .row2 { grid-template-columns:1fr; }
+  #arahOS-client-header { padding:0 14px; gap:10px; }
+}
+
+/* ============================================================
+   arahOS client portal — text contrast fix
+   ============================================================ */
+body #content,
+body #content p,
+body #content li,
+body #content td,
+body .content p,
+body #landing_page p {
+  color: #1f2937 !important;
+}
+body #content a { color: #163a70 !important; }
+body #content a:hover { color: #f2a900 !important; }
+/* Keep light text where background is navy */
+body #header a, body #footer a, body .navy a { color: #fff !important; }

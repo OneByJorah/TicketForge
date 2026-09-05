@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>arahOS Help Desk :: Agent Login</title>
+<link rel="stylesheet" href="/css/arahOS/arahOS-tokens.css?v=3">
+<link rel="stylesheet" href="/css/arahOS/arahOS-client-portal.css?v=34">
+<link rel="stylesheet" href="/css/arahOS/arahOS-agent-login.css?v=3">
+</head>
+<body class="vl-body">
+<div class="vl-wrap">
+  <section class="vl-card">
+    <div class="vl-brandline">
+      <img class="vl-banner-logo" src="/showcase/images/arahOS/arahOS-banner-logo.png" alt="arahOS Help Desk">
+    </div>
+    <h1>arahOS Help Desk</h1>
+    <p class="vl-sub">Enter your arahOS network credentials</p>
+    <h3>Authentication Required</h3>
+    <form method="post" action="/scp/login.php">
+      <div class="vl-field"><span class="vl-icon">&#128100;</span><input type="text" name="username" placeholder="firstname.lastname" required></div>
+      <div class="vl-field"><span class="vl-icon">&#128274;</span><input type="password" name="passwd" placeholder="Password" required></div>
+      <button type="submit" class="vl-btn">Sign in</button>
+    </form>
+  </section>
+  <aside class="vl-panel">
+    <h3>Support services</h3>
+    <p class="vl-panelsub">arahOS help desk status &amp; contact channels.</p>
+    <div class="vl-tiles">
+      <div class="vl-tile"><div class="num">3</div><div class="lbl">Open Tickets</div></div>
+      <div class="vl-tile"><div class="num">7</div><div class="lbl">Active Users</div></div>
+      <div class="vl-tile"><div class="num">1</div><div class="lbl">Open Tasks</div></div>
+      <div class="vl-tile"><div class="num">100%</div><div class="lbl">Uptime</div></div>
+    </div>
+    <p class="vl-foot">arahOS help desk operations are running normally.</p>
+    <p class="vl-foot">Last checked: <?php echo date("M j, Y \&\middot; g:ia"); ?></p>
+  </aside>
+</div>
+<a class="vl-oscar" href="#">osTicket</a>
+<script src="/js/arahOS/arahOS-client-portal.js"></script>
+</body>
+</html>

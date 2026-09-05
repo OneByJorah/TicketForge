@@ -1,0 +1,372 @@
+/* ============================================================
+   arahOST Help Desk — STAFF (AGENT) PANEL theme
+   Realizes the arahOS-osticket-preview.html staff mockup: gold-bordered
+   navy top bar with VI badge, navy tabs, left sidebar, gold CTA,
+   ticket queue with status pills, stat cards.
+   ============================================================ */
+
+:root {
+  --arahOS-navy-900:#0a1f44;
+  --arahOS-navy-800:#102a56;
+  --arahOS-navy-700:#163a70;
+  --arahOS-navy-600:#1e4c8f;
+  --arahOS-gold-500:#f2a900;
+  --arahOS-gold-600:#d69400;
+  --arahOS-gold-100:#fdf1d6;
+  --arahOS-gray-50:#f7f8fa;
+  --arahOS-gray-100:#eef0f3;
+  --arahOS-gray-200:#dde1e7;
+  --arahOS-gray-300:#c3c9d1;
+  --arahOS-gray-500:#6b7280;
+  --arahOS-gray-900:#1a1d23;
+  --st-open:#1e8e5a; --st-overdue:#d64545; --st-pending:#d69400; --st-closed:#6b7280;
+  --arahOS-shadow:0 4px 14px rgba(10,31,68,.12);
+  --arahOS-radius:14px;
+  --arahOS-focus:0 0 0 3px rgba(242,169,0,.5);
+}
+
+body { background:var(--arahOS-gray-50); }
+#container { min-height:100vh; }
+
+/* ---- arahOS staff top bar (persists across pjax) ---- */
+#arahOS-staff-topbar {
+  background: var(--arahOS-navy-900);
+  border-bottom: 3px solid var(--arahOS-gold-500);
+  display:flex; align-items:center; padding:0 18px; height:52px; color:#fff; gap:12px;
+}
+#arahOS-staff-topbar .arahOS-badge {
+  width:30px; height:30px; border-radius:6px; background: var(--arahOS-gold-500);
+  color: var(--arahOS-navy-900); font-weight:800; display:flex; align-items:center;
+  justify-content:center; font-size:.9rem; text-decoration:none; flex:0 0 auto;
+}
+#arahOS-staff-topbar .arahOS-agent-title { font-size:.95rem; font-weight:700; }
+#arahOS-staff-topbar .arahOS-agent-who {
+  margin-left:auto; font-size:.82rem; color: var(--arahOS-gray-300);
+  display:flex; align-items:center; gap:6px;
+}
+#arahOS-staff-topbar .arahOS-agent-who a { color: var(--arahOS-gold-500); text-decoration:none; }
+#arahOS-staff-topbar .arahOS-agent-who a:hover { text-decoration:underline; }
+
+/* hide osTicket's default logo bar (#header) — we replaced it with topbar */
+#header { display:none; }
+
+/* ---- Main nav (Tabs: Tickets / KB / Reports / Admin) ---- */
+#nav {
+  background: var(--arahOS-navy-800); list-style:none; margin:0; padding:0;
+  display:flex; flex-wrap:wrap;
+}
+#nav li { display:inline-block; }
+#nav li a {
+  color: var(--arahOS-gray-100); text-decoration:none; font-size:.85rem;
+  padding:11px 16px; display:inline-block;
+}
+#nav li a.active, #nav li.active a {
+  background: var(--arahOS-gold-500); color: var(--arahOS-navy-900); font-weight:700;
+}
+#nav li a:hover:not(.active) { background: var(--arahOS-navy-700); }
+
+/* ---- arahOS sidebar (sub-nav) ---- */
+.arahOS-sidebar {
+  background: var(--arahOS-gray-50);
+  border-right:1px solid var(--arahOS-gray-200);
+  padding:16px 0; min-width:200px; align-self:stretch;
+}
+.arahOS-sidebar-head {
+  padding:4px 18px 10px; font-size:.72rem; text-transform:uppercase;
+  letter-spacing:.05em; color: var(--arahOS-gray-500); font-weight:700;
+}
+.arahOS-sidebar #sub_nav { list-style:none; margin:0; padding:0; }
+.arahOS-sidebar #sub_nav li a {
+  display:block; padding:9px 18px; color: var(--arahOS-navy-700);
+  text-decoration:none; font-size:.85rem; border-left:3px solid transparent;
+}
+.arahOS-sidebar #sub_nav li a.active {
+  background: var(--arahOS-gold-100); border-left-color: var(--arahOS-gold-500);
+  font-weight:700; color: var(--arahOS-navy-900);
+}
+.arahOS-sidebar #sub_nav li a:hover:not(.active) { background: var(--arahOS-gray-100); }
+
+/* put sidebar + content side by side */
+#pjax-container { display:flex; flex-wrap:wrap; align-items:stretch; }
+#pjax-container > .arahOS-sidebar { flex:0 0 200px; }
+#content { flex:1 1 auto; padding:20px; min-width:0; }
+
+/* ---- headings ---- */
+#content h1, #content h2 { color: var(--arahOS-navy-900); margin-top:0; }
+
+/* ---- toolbar / action buttons ---- */
+#content .button, #content input[type=submit], #content input[type=button], #content button {
+  border-radius:4px; font-weight:700; font-family:inherit;
+}
+#content .button, #content input[type=button] {
+  background: var(--arahOS-navy-700); color:#fff; border:1px solid var(--arahOS-navy-900);
+}
+#content .button:hover { background: var(--arahOS-navy-600); }
+#content .button.green, #content input[type=submit].green, #content .btn.gold,
+#content a.button.green {
+  background: var(--arahOS-gold-500); color: var(--arahOS-navy-900);
+  border-color: var(--arahOS-gold-600);
+}
+#content .button.green:hover { background: var(--arahOS-gold-600); }
+#content .button.danger { background:#d64545; color:#fff; border-color:#b53232; }
+
+#content input[type=text], #content input[type=search], #content select, #content textarea {
+  border:1px solid var(--arahOS-gray-300); border-radius:4px; padding:8px 10px;
+  font-family:inherit;
+}
+#content input:focus, #content select:focus, #content textarea:focus {
+  outline:none; border-color: var(--arahOS-gold-500); box-shadow: var(--arahOS-focus);
+}
+
+/* ---- stat cards ---- */
+#content .stats, #content .dashboard-stats {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:18px;
+}
+#content .stat, #content .dashboard-stat {
+  background:#fff; border:1px solid var(--arahOS-gray-200); border-radius:10px;
+  padding:14px; text-align:center;
+}
+#content .stat .n, #content .dashboard-stat .n {
+  font-size:1.5rem; font-weight:800; color: var(--arahOS-navy-900);
+}
+#content .stat .l, #content .dashboard-stat .l {
+  font-size:.72rem; color: var(--arahOS-gray-500); text-transform:uppercase; letter-spacing:.03em;
+}
+
+/* ---- ticket queue table (matches mockup pills) ---- */
+#content table.list, #content table {
+  width:100%; border-collapse:collapse; background:#fff;
+  border:1px solid var(--arahOS-gray-200); border-radius:10px; overflow:hidden;
+}
+#content table.list th, #content th {
+  background: var(--arahOS-navy-900); color:#fff; text-align:left;
+  padding:10px 12px; font-size:.78rem; font-weight:600;
+}
+#content table.list td, #content td {
+  padding:11px 12px; border-bottom:1px solid var(--arahOS-gray-100); font-size:.85rem;
+}
+#content table.list tr:hover td, #content tbody tr:hover td { background: var(--arahOS-gray-50); }
+
+/* status pills */
+.pill, .label, .badge {
+  border-radius:999px; padding:3px 10px; font-size:.7rem; font-weight:700;
+  text-transform:uppercase; color:#fff; letter-spacing:.03em;
+}
+.pill.open, .label.open { background: var(--st-open); }
+.pill.overdue, .label.overdue { background: var(--st-overdue); }
+.pill.pending, .label.pending { background: var(--st-pending); }
+.pill.closed, .label.closed { background: var(--st-closed); }
+tr.overdue td, tr.row.muted.overdue td { background: rgba(214,69,69,.06); }
+
+/* priority text */
+.pr.high, .priority.high { color: var(--st-overdue); font-weight:700; }
+.pr.normal, .priority.normal { color: var(--arahOS-navy-700); }
+.pr.low, .priority.low { color: var(--arahOS-gray-500); }
+
+/* ---- banners ---- */
+.notice-banner, #notice_bar {
+  background: var(--arahOS-gold-100); border-left:4px solid var(--arahOS-gold-500);
+  color: var(--arahOS-navy-900); padding:10px 14px; border-radius:4px;
+}
+.warning-banner, #warning_bar { border-left:4px solid var(--arahOS-gold-600); }
+.error-banner, #error_bar { border-left:4px solid #d64545; }
+
+/* ---- footer ---- */
+#footer {
+  background: var(--arahOS-navy-900); color: var(--arahOS-gray-300);
+  text-align:center; padding:14px; font-size:.8rem;
+}
+
+@media (max-width:800px){
+  #pjax-container { flex-direction:column; }
+  #pjax-container > .arahOS-sidebar { flex:1 1 auto; border-right:none; border-bottom:1px solid var(--arahOS-gray-200); }
+  #content .stats, #content .dashboard-stats { grid-template-columns:repeat(2,1fr); }
+}
+
+/* ============================================================
+   arahOS v7 — Full-width backend + force navy top nav
+   scp.css locks #container to 960px and styles #nav gray.
+   These win with body-scoped specificity.
+   ============================================================ */
+
+/* Full width layout */
+body #container,
+html body #container {
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 0 20px !important;
+  padding: 0 !important;
+}
+body #content {
+  width: auto !important;
+  max-width: none !important;
+  margin: 10px 16px !important;
+}
+
+/* Force navy nav bar (override scp.css #eee) */
+body ul#nav,
+body #nav {
+  background: var(--arahOS-navy-800, #102a56) !important;
+  background-image: none !important;
+  border: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+body #nav li a,
+body ul#nav li a {
+  color: #eef1f5 !important;
+  font-weight: 600 !important;
+}
+body #nav li a:hover,
+body ul#nav li a:hover,
+body #nav li.active a,
+body ul#nav li.active a {
+  background: var(--arahOS-gold-500, #f2a900) !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+}
+
+/* Header full width */
+body #header { width: 100% !important; box-sizing: border-box !important; }
+
+/* ============================================================
+   arahOS v8 — Ticket view: action buttons + thread entries
+   ============================================================ */
+
+/* Primary action buttons (Post Reply = input.save) rendered washed-out.
+   Force solid navy with white text; gold on hover. */
+body input.save,
+body input[type="submit"].save,
+body button.save,
+body .pull-right input[type="submit"],
+body #response_form input[type="submit"] {
+  background: var(--arahOS-navy-700, #163a70) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  padding: 9px 20px !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.15) !important;
+  cursor: pointer !important;
+}
+body input.save:hover,
+body button.save:hover,
+body #response_form input[type="submit"]:hover {
+  background: var(--arahOS-gold-500, #f2a900) !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+}
+/* Reset/secondary buttons stay light but readable */
+body input[type="reset"],
+body input.cancel {
+  background: #eef1f5 !important;
+  color: var(--arahOS-navy-900, #0a1f44) !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px !important;
+  padding: 9px 18px !important;
+  font-weight: 600 !important;
+}
+
+/* Thread entries: card look. osTicket wraps them in .thread-entry */
+body .thread-entry {
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  margin-bottom: 14px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  box-shadow: 0 1px 3px rgba(10,31,68,.05) !important;
+}
+body .thread-entry .header,
+body .thread-entry .thread-body {
+  padding: 12px 14px !important;
+}
+body .thread-entry.message { border-left: 3px solid var(--arahOS-navy-600, #1d4a8f) !important; }
+body .thread-entry.response { border-left: 3px solid var(--arahOS-gold-500, #f2a900) !important; }
+body .thread-entry.note { border-left: 3px solid #e0a800 !important; background: #fffdf5 !important; }
+
+/* Ticket info tables (status/user/dept) readability */
+body table.ticket_info th,
+body #ticket-info th,
+body .infoTable th { color: var(--arahOS-navy-700, #163a70) !important; font-weight: 700 !important; }
+
+/* ============================================================
+   arahOS v9 — Select widgets + faint event text
+   ============================================================ */
+
+/* Native selects: don't clip text with tight padding */
+body select {
+  min-height: 34px !important;
+  padding: 6px 24px 6px 10px !important;
+  line-height: 1.4 !important;
+  text-overflow: ellipsis !important;
+}
+
+/* select2 dropdowns (canned response, etc.) — restore native sizing */
+body .select2-container .select2-selection--single {
+  height: 34px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px !important;
+}
+body .select2-container .select2-selection--single .select2-selection__rendered {
+  line-height: 32px !important;
+  padding-left: 10px !important;
+  color: #1a1d23 !important;
+}
+body .select2-container .select2-selection--single .select2-selection__arrow { height: 32px !important; }
+
+/* Redactor / reply "From" select shouldn't be squished */
+body #response_form select,
+body #reply select { min-width: 220px !important; }
+
+/* Faint thread-event timeline text (overdue/created markers) */
+body .thread-event,
+body .thread-event .time,
+body .thread-event .description {
+  color: #4b5563 !important;
+  font-size: 12.5px !important;
+}
+body .thread-event b, body .thread-event .faded { color: #374151 !important; }
+
+/* ============================================================
+   arahOS v10 — Backend fixes: table header links + nav tab height
+   (these load inline via the plugin on all SCP pages)
+   ============================================================ */
+
+/* Sortable header links must be white on the navy header */
+table.list thead th a,
+table.queue thead th a,
+table.list thead th a:visited,
+table.queue thead th a:visited {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+table.list thead th a:hover,
+table.queue thead th a:hover {
+  color: var(--arahOS-gold-500, #f2a900) !important;
+}
+
+/* Nav bar: let tabs size naturally (fix clipped tabs) */
+#nav,
+ul#nav {
+  height: auto !important;
+  min-height: 44px !important;
+  overflow: visible !important;
+  display: flex !important;
+  align-items: stretch !important;
+  flex-wrap: wrap !important;
+}
+#nav li,
+ul#nav li {
+  height: auto !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+#nav li a,
+ul#nav li a {
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  line-height: 1.2 !important;
+  padding: 12px 18px !important;
+}
