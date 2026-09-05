@@ -24,7 +24,7 @@ If applicable, add screenshots or log output.
 **Environment**
 - OS:
 - Browser/runtime version:
-- Project version or branch:
+- ArahOStheme version or branch:
 
 **Additional context**
 Add any other context here.

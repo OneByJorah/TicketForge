@@ -1,6 +1,6 @@
 ## What changed
 
-Briefly describe the change and why.
+Briefly describe the change to ArahOStheme and why.
 
 ## How to test
 

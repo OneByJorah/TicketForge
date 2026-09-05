@@ -10,7 +10,7 @@ assignees: ''
 A clear and concise description of the problem.
 
 **Describe the solution you'd like**
-What should happen?
+What should ArahOStheme do?
 
 **Describe alternatives you've considered**
 Other approaches or workarounds.
