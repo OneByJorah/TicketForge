@@ -2,11 +2,11 @@
 
 > A premium merged osTicket theme and plugin — full-width branded backend, split-screen agent login, and a PWA-ready client portal for osTicket 1.18.x.
 
-[![License](https://img.shields.io/github/license/OneByJorah/ArahOStheme?style=for-the-badge&color=FFB300&labelColor=0a0a09)](https://github.com/OneByJorah/ArahOStheme)
-[![Top Language](https://img.shields.io/github/languages/top/OneByJorah/ArahOStheme?style=for-the-badge&color=FFB300&labelColor=0a0a09)](https://github.com/OneByJorah/ArahOStheme)
-[![Stars](https://img.shields.io/github/stars/OneByJorah/ArahOStheme?style=for-the-badge&color=FFB300&labelColor=0a0a09)](https://github.com/OneByJorah/ArahOStheme/stargazers)
-[![Last Commit](https://img.shields.io/github/last-commit/OneByJorah/ArahOStheme?style=for-the-badge&color=FFB300&labelColor=0a0a09)](https://github.com/OneByJorah/ArahOStheme/commits)
-[![CI](https://img.shields.io/github/actions/workflow/status/OneByJorah/ArahOStheme/ci.yml?style=for-the-badge&color=FFB300&labelColor=0a0a09)](https://github.com/OneByJorah/ArahOStheme/actions)
+[![License](https://img.shields.io/github/license/OneByJorah/TicketForge?style=for-the-badge&color=FFB300&labelColor=0a0a09)](https://github.com/OneByJorah/TicketForge)
+[![Top Language](https://img.shields.io/github/languages/top/OneByJorah/TicketForge?style=for-the-badge&color=FFB300&labelColor=0a0a09)](https://github.com/OneByJorah/TicketForge)
+[![Stars](https://img.shields.io/github/stars/OneByJorah/TicketForge?style=for-the-badge&color=FFB300&labelColor=0a0a09)](https://github.com/OneByJorah/TicketForge/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/OneByJorah/TicketForge?style=for-the-badge&color=FFB300&labelColor=0a0a09)](https://github.com/OneByJorah/TicketForge/commits)
+[![CI](https://img.shields.io/github/actions/workflow/status/OneByJorah/TicketForge/ci.yml?style=for-the-badge&color=FFB300&labelColor=0a0a09)](https://github.com/OneByJorah/TicketForge/actions)
 
 ![ArahOS landing page](screenshots/landing-page.png)
 
@@ -17,7 +17,7 @@ ArahOStheme is the unified successor to [arahOS-theme](https://github.com/OneByJ
 ## Quick Start
 
 ```bash
-git clone https://github.com/OneByJorah/ArahOStheme.git && cd ArahOStheme
+git clone https://github.com/OneByJorah/TicketForge.git && cd ArahOStheme
 sudo ./install.sh /var/www/osticket/upload   # plugin + template assets
 ```
 
@@ -55,7 +55,7 @@ CSS3 · Vanilla JavaScript · PHP (osTicket plugin + template overrides) · Bash
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). [Open an issue](https://github.com/OneByJorah/ArahOStheme/issues) for bugs or ideas.
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). [Open an issue](https://github.com/OneByJorah/TicketForge/issues) for bugs or ideas.
 
 ## License
 
