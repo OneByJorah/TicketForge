@@ -1,0 +1,33 @@
+{
+  "name": "ticketforge",
+  "version": "1.0.0",
+  "description": "Lightweight issue tracking and project management \u2014 tickets, boards, milestones, and team collaboration with Docker deployment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'ok' && exit 0"
+  },
+  "keywords": [
+    "ticketforge",
+    "docker",
+    "self-hosted",
+    "jorahone"
+  ],
+  "author": "OneByJorah <info@jorahone.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OneByJorah/TicketForge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OneByJorah/TicketForge/issues"
+  },
+  "homepage": "https://github.com/OneByJorah/TicketForge#readme",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
